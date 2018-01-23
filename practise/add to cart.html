@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body onload="data()">
+<div id="msg"><h1>Here All Product Available</h1></div><br>
+ Product Name :- <input type="text" id="name"><br>
+ Product Quantity :-  <input type="number" id="qty"><br>
+ Product Amount :-  <input type="number" id="amt"><br>
+<input type="submit" value="Add Product" onclick="add()"> <br>
+<div id="output">Here All Product Available</div>
+
+<script>
+     var prod=[{"name":"Pen","qty":8,"amount":150},{"name":"Pencil","qty":80,"amount":1500},{"name":"Penfasf","qty":8,"amount":250},{"name":"Pen","qty":8,"amount":150},{"name":"Pen","qty":8,"amount":150},{"name":"Pen","qty":8,"amount":150},]
+     var out=document.getElementById("output");
+     var cart=[];
+
+     function data() {
+         var html='<table border="1"><tr><td>Product Id</td><td>Product Name</td><td>Quantity</td><td>Amount</td><td colspan="2">Action</td></tr>';
+         for(var i=0;i<prod.length;i++){
+             html+='<tr id="'+i+'" data-row="'+i+'"><td>'+(i+1)+'</td><td>'+prod[i].name+'</td><td>'+prod[i].qty+'</td><td>'+prod[i].amount+'</td><td><a href="#" data-action="del">Delete</a></td><td><a href="#" data-prodnm="'+prod[i].name+'" class="produ" data-prodqty="1" data-prodamt="'+prod[i].amount+'" data-id="'+i+'"  data-action="Add">Add to cart</a></td> </tr>';
+         }
+         html+='</table>';
+         out.innerHTML=html;
+
+         var del=document.querySelectorAll('[data-action="del"]');
+         for(var i=0;i<del.length;i++){
+          del[i].addEventListener('click',function () {
+              var row=this.closest('[data-row]');
+              var rid=row.getAttribute("data-row");
+              prod.splice(rid,1);
+              data();
+          })
+         }
+         
+         var add=document.querySelectorAll('.produ');
+         for(var i=0;i<add.length;i++){
+             add[i].addEventListener('click',function () {
+                 addCart();
+             })
+         }
+         
+     }
+     function addCart() {
+         var iteminfo = event.target.dataset;
+         var itemincart = false;
+         iteminfo.qty = 1;
+         cart.forEach(function (v) {
+             if (v.id == iteminfo.id) {
+                 v.qty = parseInt(v.qty) + parseInt(iteminfo.qty);
+                 itemincart = true;
+             }
+         });
+         if (!itemincart) {
+             cart.push(iteminfo);
+         }
+         console.log(cart);
+         localStorage.setItem('scart', JSON.stringify(cart));
+     }
+
+
+     function add() {
+        var txtnm=document.getElementById("name").value;
+         var qty=document.getElementById("qty").value;
+         var amt=document.getElementById("amt").value;
+         var obj={
+             "name":txtnm,
+             "qty":Number(qty),
+             "amount":Number(amt)
+         };
+         prod.push(obj);
+         data();
+         dataclear();
+     }
+     function dataclear() {
+         document.getElementById("name").value="";
+         document.getElementById("qty").value="";
+         document.getElementById("amt").value="";
+     }
+
+  </script>
+</body>
+</html>
+

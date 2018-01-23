@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sudoko game</title>
+    <style>
+        input{
+            width: 20px;
+        }
+    </style>
+</head>
+<body>
+   <table border="1" bgcolor="#f0f8ff" height="700px" width="700px">
+       <tr><td> <table border="1" height="100%" width="100%">
+              <tr>
+                  <td><input type="text" id="111" value=""> </td>
+                  <td><input type="text" id="122" value=""> </td>
+                  <td><input type="text" id="133" value=""></td>
+              </tr>
+           <tr>
+               <td> <input type="text" id="214" value=""></td>
+               <td>  <input type="text" id="225" value=""></td>
+               <td>  <input type="text" id="236" value=""></td>
+           </tr>
+           <tr>
+               <td> <input type="text" id="317" value=""></td>
+               <td> <input type="text" id="328" value=""></td>
+               <td> <input type="text" id="339" value=""></td>
+           </tr>
+       </table></td>
+           <td>
+               <table  border="1" height="100%" width="100%">
+                   <tr>
+                       <td> <input type="text" id="141" value=" "></td>
+                       <td> <input type="text" id="152" value=" "  ></td>
+                       <td> <input type="text" id="163" value=" "></td>
+                   </tr>
+                   <tr>
+                       <td> <input type="text" id="244" value=" "></td>
+                       <td> <input type="text" id="255" value=" "></td>
+                       <td> <input type="text" id="266" value=" "> </td>
+                   </tr>
+                   <tr>
+                       <td> <input type="text" id="347" value=" "  ></td>
+                       <td> <input type="text" id="358" value=" "></td>
+                       <td> <input type="text" id="369"value=" "></td>
+                   </tr>
+               </table>
+           </td> <td>
+               <table  border="1"height="100%" width="100%">
+                   <tr>
+                       <td> <input type="text" id="171"  value=" " ></td>
+                       <td> <input type="text" id="182" value=" "></td>
+                       <td> <input type="text" id="193" value=" "></td>
+                   </tr>
+                   <tr>
+                       <td> <input type="text" id="274" value=" "></td>
+                       <td> <input type="text" id="285" value=" "></td>
+                       <td> <input type="text" id="296" value=" "></td>
+                   </tr>
+                   <tr>
+                       <td> <input type="text" id="377" value=" "></td>
+                       <td> <input type="text" id="388" value=" "></td>
+                       <td> <input type="text" id="399" value=" "></td>
+                   </tr>
+               </table>
+           </td>  </tr>
+       <tr><td> <table  border="1" height="100%" width="100%">
+           <tr>
+               <td> <input type="text" id="411" value=" "></td>
+               <td> <input type="text" id="422" value=" "></td>
+               <td> <input type="text" id="433" value=" "></td>
+           </tr>
+           <tr>
+               <td> <input type="text" id="514" value=" "></td>
+               <td> <input type="text" id="525" value=" "></td>
+               <td> <input type="text" id="536" value=" "></td>
+           </tr>
+           <tr>
+               <td> <input type="text" id="617" value=" "></td>
+               <td> <input type="text" id="628" value=" "></td>
+               <td> <input type="text" id="639" value=" "></td>
+           </tr>
+       </table></td>
+           <td>
+               <table  border="1" height="100%" width="100%">
+                   <tr>
+                       <td> <input type="text" id="441" value=" "></td>
+                       <td> <input type="text" id="452" value=" "></td>
+                       <td> <input type="text" id="463" value=" "></td>
+                   </tr>
+                   <tr>
+                       <td> <input type="text" id="544" value=" "></td>
+                       <td> <input type="text" id="555" value=" "></td>
+                       <td> <input type="text" id="566" value=" "></td>
+                   </tr>
+                   <tr>
+                       <td> <input type="text" id="647" value=" "></td>
+                       <td> <input type="text" id="658" value=" "></td>
+                       <td> <input type="text" id="669" value=" "></td>
+                   </tr>
+               </table>
+           </td> <td>
+               <table  border="1" height="100%" width="100%">
+                   <tr>
+                       <td> <input type="text" id="471" value=" "></td>
+                       <td> <input type="text" id="482" value=" "></td>
+                       <td> <input type="text" id="493" value=" "></td>
+                   </tr>
+                   <tr>
+                       <td> <input type="text" id="574" value=" "></td>
+                       <td> <input type="text" id="585" value=" "></td>
+                       <td> <input type="text" id="596" value=" "></td>
+                   </tr>
+                   <tr>
+                       <td> <input type="text" id="677" value=" "></td>
+                       <td> <input type="text" id="688" value=" "></td>
+                       <td> <input type="text" id="699" value=" "></td>
+                   </tr>
+               </table >
+           </td>  </tr>
+
+       <tr><td> <table  border="1" height="100%" width="100%">
+           <tr>
+               <td> <input type="text" id="711" value=" "></td>
+               <td> <input type="text" id="722" value=" "></td>
+               <td> <input type="text" id="733" value=" "></td>
+           </tr>
+           <tr>
+               <td> <input type="text" id="814" value=" "></td>
+               <td> <input type="text" id="825" value=" "></td>
+               <td> <input type="text" id="836" value=" "></td>
+           </tr>
+           <tr>
+               <td> <input type="text" id="917" value=" "></td>
+               <td> <input type="text" id="928" value=" "></td>
+               <td> <input type="text" id="939" value=" "></td>
+           </tr>
+       </table></td>
+           <td>
+               <table  border="1" height="100%" width="100%">
+                   <tr>
+                       <td> <input type="text" id="741" value=" "></td>
+                       <td> <input type="text" id="752" value=" "></td>
+                       <td> <input type="text" id="763" value=" "></td>
+                   </tr>
+                   <tr>
+                       <td> <input type="text" id="844" value=" "></td>
+                       <td> <input type="text" id="855" value=" "></td>
+                       <td> <input type="text" id="866" value=" "></td>
+                   </tr>
+                   <tr>
+                       <td> <input type="text" id="947" value=" "></td>
+                       <td> <input type="text" id="458" value=" "></td>
+                       <td> <input type="text" id="969" value=" "></td>
+                   </tr>
+               </table>
+           </td> <td>
+               <table  border="1" height="100%" width="100%">
+                   <tr>
+                       <td> <input type="text" id="771" value=" "></td>
+                       <td> <input type="text" id="782" value=" "></td>
+                       <td> <input type="text" id="793" value=" "></td>
+                   </tr>
+                   <tr>
+                       <td> <input type="text" id="874" value=" "></td>
+                       <td> <input type="text" id="885" value=" "></td>
+                       <td> <input type="text" id="996" value=" "></td>
+                   </tr>
+                   <tr>
+                       <td> <input type="text" id="977" value=" "></td>
+                       <td> <input type="text" id="288" value=" "></td>
+                       <td> <input type="text" id="999" value=" "></td>
+                   </tr>
+               </table>
+           </td>  </tr>
+
+
+   </table>
+
+    <button type="button" name="solve" onclick="myData()">solve</button>
+  <script>
+      let count1=0;
+      let count2=3;
+      let count3=6;
+
+      let i=1;
+      let j=1;
+      let k=1;
+
+     function  myData() {
+         for(let i=1;i<=9;i++){
+             for(let j=1;j<=9;j++){
+                 my(i,j);
+             }
+         }
+     }
+     function my(i,j) {
+         if((i%3==1) && (j<4))
+         {
+             count1++;
+             if(count1>=4)
+                 count1=1;
+             let data=`${i}${j}${count1}`;
+             var rand=Math.floor(Math.random()*10);
+             console.log(rand+"  "+data);
+             document.getElementById(data).value=rand;
+
+         }
+      else if( (i%3==2) && (j<7)){
+             count2++;
+             if(count2>=7)
+                 count2=4;
+             let data=`${i}${j}${count2}`;
+             var rand=Math.floor(Math.random()*10);
+             console.log(rand+"  "+data);
+             document.getElementById(data).value=rand;
+
+         }
+       if(((i==3) || (i==6) || (i==9)) && ((j==7) || (j==8) || (j==9) )) {
+             count3++;
+             if(count3>=10)
+                 count3=7;
+             let data=`${i}${j}${count3}`;
+             var rand=Math.floor(Math.random()*10);
+             console.log(rand+"  "+data);
+             document.getElementById(data).value=rand;
+         }
+     }
+  </script>
+</body>
+</html>

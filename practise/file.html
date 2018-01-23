@@ -1,0 +1,30 @@
+<html>
+<head>
+    <title>Complete JavaScript Course</title>
+</head>
+<body>
+<div id="output">Complete JavaScript Course </div>
+<input type="file" multiple onchange="upFiles(this.files)">
+<div id="message"></div>
+<script>
+    var message = document.getElementById('message');
+    if(window.FileReader){
+        message.innerHTML = "file reader is available";
+    }
+    else {
+        message.innerHTML = "file reader NOT available";
+    }
+    function upFiles(files) {
+       for(var i=0;i<files.length;i++){
+           var filenm=files[i].name;
+           var fread=new FileReader;
+           fread.onload=function (e) {
+               message.innerHTML=filenm+'<br>'+e.target.result;
+           }
+           fread.readAsText(files[i]);
+       }
+    }
+
+</script>
+</body>
+</html>

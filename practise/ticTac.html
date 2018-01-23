@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <tr><td><input type="button" onclick="cal(this)" id="btn1" ></td><td><input type="button" onclick="cal(this)" id="btn2" ></td> <td><input type="button" onclick="cal(this)" id="btn3" ></td></tr>
+    <tr><td><input type="button" onclick="cal(this)" id="btn4" ></td><td><input type="button" onclick="cal(this)" id="btn5" ></td> <td><input type="button" onclick="cal(this)" id="btn6" ></td></tr>
+    <tr><td><input type="button" onclick="cal(this)" id="btn7" ></td><td><input type="button" onclick="cal(this)" id="btn8" ></td> <td><input type="button" onclick="cal(this)" id="btn9" ></td></tr>
+</table>
+<script>
+    var flag="x";
+    function cal(t) {
+        if(flag=="0")
+            flag="x";
+      else  if(flag=="x")
+            flag="0";
+        t.value=flag;
+        check();
+    }
+    function check() {
+     var b1=document.getElementById("btn1").value;
+     var b2=document.getElementById("btn2").value;
+     var b3=document.getElementById("btn3").value;
+     var b4=document.getElementById("btn4").value;
+     var b5=document.getElementById("btn5").value;
+     var b6=document.getElementById("btn6").value;
+     var b7=document.getElementById("btn7").value;
+        var b8=document.getElementById("btn8").value;
+        var b9=document.getElementById("btn9").value;
+        if((b1!="" && b2!="" && b3!="") &&(b1==b2) && (b1==b3)){
+            alert(b1+"is win");
+        }
+     else   if((b4!="" && b5!="" && b6!="") &&(b4==b5) && (b4==b6)){
+            alert(b4+"is win");
+        }
+     else   if((b7!="" && b8!="" && b9!="") &&(b7==b8) && (b7==b9)){
+            alert(b7+"is win");
+        }
+      else  if((b1!="" && b4!="" && b7!="") &&(b1==b4) && (b4==b7)){
+            alert(b1+"is win");
+        }
+      else  if((b2!="" && b5!="" && b8!="") &&(b2==b5) && (b2==b8)){
+            alert(b2+"is win");
+        }
+       else if((b3!="" && b6!="" && b9!="") &&(b3==b6) && (b6==b9)){
+            alert(b3+"is win");
+        }
+     else   if((b1!="" && b5!="" && b9!="") &&(b1==b5) && (b5==b9)){
+            alert(b1+"is win");
+        }
+      else  if((b3!="" && b5!="" && b7!="") &&(b3==b5) && (b3==b7)){
+            alert(b3+"is win");
+        }
+
+
+    }
+</script>
+</body>
+</html>

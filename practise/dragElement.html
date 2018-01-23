@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Drag Element</title>
+    <style>
+        .box{
+            height: 100px;
+            width: 200px;
+            background-color: antiquewhite;
+            border-width: 1px;
+            text-align: center;
+            border: dashed;
+            display: inline-block;
+        }
+        #btn{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div id="data"></div>
+<div class="box" id="div1" ondrop="fun1()" ondragover="fun2" >
+    <div id="btn" ondragstart="dStart()" draggable="true">plz drag me</div>
+</div>
+<div class="box" id="div2" ondrop="fun1()" ondragover="nDrop()"></div>
+<div class="box" id="div3" ondrop="fun1()" ondragover="nDrop()"></div>
+<div class="box" id="div4" ondrop="fun1()" ondragover="nDrop()"></div>
+<script>
+    function dStart() {
+        message("drag started");
+        holderItem = event.target;
+    }
+
+    function nDrop() {
+        event.preventDefault();
+    }
+
+    function fun1() {
+        event.target.appendChild(holderItem);
+    }
+
+    function message(m) {
+        document.getElementById('data').innerHTML = m;
+    }
+</script>
+</body>
+</html>

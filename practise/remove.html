@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .box1{
+            background-color: gray;
+            height:10%;
+            width: 20%;
+            border-radius: 15px;
+            font-size:1.2em;
+        }
+        .btn{
+            height:50px;
+            width:100px;
+            background-color:red;
+            color:white;
+            border-radius: 15px;
+            font-size:1.2em;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <title>drag data</title>
+</head>
+<body>
+<select onchange="imgU()">
+    <option value="">Select any one</option>
+    <option value="150x50">small</option>
+    <option value="350x50">Medium</option>
+    <option value="750x50">Large</option>
+</select>
+Enter your Text=<input type="text" onchange="imgU()">
+select your color=<input type="color" onchange="imgU()">
+
+<img src="http://via.placeholder.com/350x150/222/fff?text1=image1" id="myimg">
+
+<script>
+    function imgU() {
+        var color="222";
+        var size="350x150";
+        var text="image1";
+
+        if(event.target.type=="select-one"){
+            size = event.target.value;
+        }
+        if(event.target.type=="text"){
+            text = event.target.value;
+        }
+        if(event.target.type=="color"){
+          var  colr = event.target.value;
+          color=colr.replace("#","");
+        }
+        console.log(event.target.parentElement.myimg.src);
+
+        document.body.children[3].src="http://via.placeholder.com/"+size+"/"+color+"/fff?text1="+text;
+          //  "http://via.placeholder.com/350x150/222/fff?text1=image1";
+    }
+</script>
+</body>
+</html>

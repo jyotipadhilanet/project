@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MaintainPowerAZ</title>
+</head>
+<body>
+Enter first word=<input type="text" id="wd"><br>
+Enter second word=<input type="text" id="wt"> <br>
+<input type="button" value="Submit" onclick="my()">
+<br>
+Answer will be=<input type="text" id="ans">
+<script>
+var a=["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+var all=[];
+for(i=0;i<a.length;i++){
+    all.push(Math.pow(2,i));
+}
+console.log(all);
+function my() {
+    var sum1=0,count=0,sum2=0,aft=0,tot=0,str1="";
+    var data,str="";
+    var s1=document.getElementById("wd").value;
+    var s2=document.getElementById("wt").value;
+    var ans=document.getElementById("ans");
+    var arr1=s1.split("");
+    var arr2=s2.split("");
+    for(i=0;i<arr1.length;i++){
+        data=arr1[i];
+        for(j=0;j<a.length;j++) {
+            if (a[j] === data) {
+                sum1 += all[j];
+            }
+        }
+    }
+    for(i=0;i<arr2.length;i++){
+        data=arr2[i];
+        console.log(data);
+        for(j=0;j<a.length;j++){
+            if(a[j]===data)
+                sum2+=all[j];
+        }
+    }
+    aft=sum1-sum2;
+    tot=aft;
+    console.log(sum1+"-"+sum2+"="+aft);
+
+    call(a.length);
+    function call(data) {
+        for(i=0;i<data;i++){
+            if(aft>=Number(all[i]))
+            {
+                count=i;
+            }
+        }
+        tot-=Number(all[count]);
+        str+=a[count];
+        if(tot>0)
+            call(count);
+    }
+    ans.value=str.split("").sort().join("");
+
+}
+</script>
+</body>
+</html>

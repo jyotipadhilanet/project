@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+<script>
+
+       function pl(){
+           var a=document.getElementById("num1").value;
+           var b=document.getElementById("num2").value;
+           document.getElementById("ans").value=Number(a)+Number(b);
+       }
+       function minu(){
+           var a=document.getElementById("num1").value;
+           var b=document.getElementById("num2").value;
+           document.getElementById("ans").value=Number(a)-Number(b);
+       }
+       function mul(){
+           var a=document.getElementById("num1").value;
+           var b=document.getElementById("num2").value;
+           document.getElementById("ans").value=Number(a)*Number(b);
+       }
+       function div(){
+           var a=document.getElementById("num1").value;
+           var b=document.getElementById("num2").value;
+           document.getElementById("ans").value=Number(a)/Number(b);
+       }
+</script>
+</head>
+<body>
+   Enter your 1st Number  <input type="number" id="num1"> <br>
+   Enter your 2nd Number  <input type="number" id="num2"> <br>
+   Total is= <input type="number" id="ans"> <br>
+   <input type="button" value="+" onclick="pl()">
+   <input type="button" value="-" onclick="minu()">
+   <input type="button" value="*" onclick="mul()">
+   <input type="button" value="/" onclick="div()">
+</body>
+</html>

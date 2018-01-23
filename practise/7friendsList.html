@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Here is friend List available</title>
+</head>
+<body>
+   <h1><center>Friend list available</center></h1>
+   <input type="text" id="txtnm">
+   <input type="button" value="Submit" onclick="dataadd()">
+   <div id="output"></div>
+   <script>
+       window.onload=Myinfo;
+       var arr=["jyoti","ganesh","kishan","rashika","varsha"];
+       function Myinfo() {
+           var html="<table border='1'>";
+           for(let i=0;i<arr.length;i++){
+             html+='<tr id="'+i+'" data-row="'+i+'"><td>'+arr[i]+'</td><td><a href="#" data-action="del">Delete</a></td><td><a href="#" data-action="edit">Edit</a></td></tr>';
+           }
+           html+="</table>";
+           document.getElementById("output").innerHTML=html;
+
+            var delinfo=document.querySelectorAll('[data-action="del"]');
+            for(let i=0;i<delinfo.length;i++){
+                delinfo[i].addEventListener('click',function () {
+                    var row=this.closest('[data-row]').getAttribute('data-row');
+                    arr.splice(row,1);
+                    Myinfo();
+                    })
+            }
+
+
+           var edtinfo=document.querySelectorAll('[data-action="edit"]');
+           for(let i=0;i<edtinfo.length;i++){
+               edtinfo[i].addEventListener('click',function () {
+                 var row=this.closest('[data-row]');
+                 var rid=row.getAttribute('data-row');
+                 row.style.backgroundColor="Yellow";
+                 var td=row.firstElementChild;
+                 var input=document.createElement("input");
+                 input.type="text";
+                 input.value=td.innerText;
+                 td.innerHTML="";
+                 td.appendChild(input);
+                 input.focus();
+                 input.onblur=function () {
+                      td.removeChild(input);
+                      td.value=input.value;
+                      td.innerHTML=input.value;
+                      row.style.backgroundColor="White";
+                 }
+
+               })
+           }
+       }
+
+       function dataadd() {
+           let t = document.getElementById("txtnm").value;
+           arr.push(t);
+           alert(arr);
+           Myinfo();
+       }
+
+   </script>
+</body>
+</html>

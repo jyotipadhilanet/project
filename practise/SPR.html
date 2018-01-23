@@ -1,0 +1,81 @@
+<html>
+<head>
+    <title>
+         Scissors Paper Rock Game
+    </title>
+</head>
+  <body>
+    <script>
+         var player=prompt("Enter your choice Scissors Paper Rock ??");
+         var pchar=player.charAt(0).toUpperCase();
+         var comp=Math.floor(Math.random()*3);
+         var cchar;
+         if(comp==0){
+              cchar="S";
+         }
+         else if(comp==1){
+             cchar="P"
+         }
+         else {cchar="R"}
+
+         if(cchar==pchar){
+             alert("Match is Tie");
+             var ans= prompt("Do you want to restart Yes then press Y" );
+             if(ans.toUpperCase()=="Y"){
+                 location.reload();
+             }
+         }
+         else if( pchar=="S"){
+               if(cchar=="R"){
+                     alert("Computer win palyer ="+pchar+ "computer has="+cchar);
+                   var ans= prompt("Do you want to restart Yes then press Y" );
+                   if(ans.toUpperCase()=="Y"){
+                       location.reload();
+                   }
+               }
+               else if(cchar=="P"){
+                   alert("Player win");
+                   var ans= prompt("Do you want to restart Yes then press Y" );
+                   if(ans.toUpperCase()=="Y"){
+                       location.reload();
+                   }
+
+               }
+         }
+         else if(pchar=="R")
+         {
+             if(cchar=="S"){
+                 alert("Player win");
+                 var ans= prompt("Do you want to restart Yes then press Y" );
+                 if(ans.toUpperCase()=="Y"){
+                     location.reload();
+                 }
+             }
+             else if(cchar=="P"){
+                 alert("Computer win");
+                 var ans= prompt("Do you want to restart Yes then press Y" );
+                 if(ans.toUpperCase()=="Y"){
+                     location.reload();
+                 }
+             }
+         }
+         else if(pchar=="P")
+         {
+             if(cchar=="S"){
+                 alert("Computer win");
+                 var ans= prompt("Do you want to restart Yes then press Y" );
+                 if(ans.toUpperCase()=="Y"){
+                     location.reload();
+                 }
+             }
+             else if(cchar=="R"){
+                 alert("Player win");
+                 var ans= prompt("Do you want to restart Yes then press Y" );
+                 if(ans.toUpperCase()=="Y"){
+                     location.reload();
+                 }
+             }
+         }
+    </script>
+  </body>
+</html>

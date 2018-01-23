@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Callback Example</title>
+</head>
+<body>
+<script>
+    function add(s1,s2,callback) {
+        var data=callback(s1,s2);
+        console.log(data);
+    }
+    add(10,20,function (s1,s2) {
+        return s1+s2;
+    })
+    function shuffleArray(arr) {
+        for (var x = arr.length - 1; x > 0; x--) {
+            var holder = Math.floor(Math.random() * (x + 1));
+            var temp = arr[x];
+            arr[x] = arr[holder];
+            arr[holder] = temp;
+        }
+        return arr;
+    }
+
+    for (var x = 0; x < myArray.length; x++) {
+        var str = myArray[x];
+        var shuffled = str.split('').sort(function () {
+            return 0.5 - Math.random()
+        }).join('');
+        html += '<div class="box" onmouseover="uText(this,\'' + shuffled + '\')" onmouseout="uText(this,\'Hidden ' + (x + 1) + '\')" onclick="eEle(this,\'' + str + '\')" >Hidden ' + (x + 1) + '</div>';
+    }
+
+</script>
+    
+
+</body>
+</html>

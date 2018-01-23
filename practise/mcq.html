@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MCQ GAme</title>
+</head>
+<body>
+<script>
+    var sc=0;
+    (function () {
+    function question(qst,opt,ans) {
+        this.qst = qst;
+        this.opt=opt;
+        this.ans=ans;
+    }
+    question.prototype.displayqst=function () {
+       console.log(this.qst);
+       for(let i=0;i<this.opt.length;i++){
+           console.log(i+":"+this.opt[i]);
+       }
+    }
+    question.prototype.checkAns=function(an) {
+         if(this.ans==an)
+         {   console.log("u r correct");
+             sc++;
+             console.log("Your score now="+sc);
+             again();
+             }
+         else
+             console.log("u r loss & try again");
+        console.log("Your score now="+sc);
+
+    }
+
+        again();
+    function again() {
+        var q1=new question("what is your fav subject?",["android","PHP","Javascript"],0);
+        var q2=new question("what is your fav language?",["C","C++","Java"],2);
+        var q3=new question("what is your fav food?",["Chinese","thai","indian"],2);
+        var q4=new question("what is your fav state?",["gujrat","UP","odisha"],0);
+        var q5=new question("what is your fav country?",["India","Australia","America"],1);
+        var q=[q1,q2,q3,q4,q5];
+        var k=Math.floor(Math.random()*q.length);
+        q[k].displayqst();
+        var ans=prompt("what is answer of this question");
+        if(ans!=="no"){
+            q[k].checkAns(Number(ans));
+            again();
+        }
+    }
+    })();
+</script>
+</body>
+</html>

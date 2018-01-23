@@ -1,0 +1,119 @@
+<html>
+ <head>
+     <title>Hello world</title>
+ </head>
+ <style>
+      .div1{
+          background-color: burlywood;
+          height: 40%;
+          width: 40%;
+          text-align: center;
+          border: 3px solid green;
+      }
+
+      .div2{
+          background-color:red;
+          height: 40%;
+          width: 40%;
+          float: right;
+          margin-top: -20%;
+          text-align: center;
+          border: 3px solid green;
+
+      }
+      .div3{
+          background-color:gray;
+          height: 10%;
+          width: 10%;
+          text-align: center;
+      }
+ </style>
+<body>
+  <h1> Hi... </h1>
+  <div class="div1">
+      <button type="button" onclick="ref()" >Refresh</button>
+      <button type="button" onclick="sub()" >Submit</button>
+     <div id="randNum"></div>
+  </div>
+
+  <div id="div2" class="div2">
+  </div>
+  <div id="div3" class="div3">
+
+      <input type="button" onclick="myData(this)" id="1" value="1" />
+      <input type="button" onclick="myData(this)" id="2" value="2" />
+      <input type="button" onclick="myData(this)" id="3" value="3" />
+      <input type="button" onclick="myData(this)" id="4" value="4" />
+      <input type="button" onclick="myData(this)" id="5" value="5" />
+      <input type="button" onclick="myData(this)" id="6" value="6" />
+      <input type="button" onclick="myData(this)" id="7" value="7" />
+      <input type="button" onclick="myData(this)" id="8" value="8" />
+      <input type="button" onclick="myData(this)" id="9" value="9" />
+      <input type="button" onclick="myData(this)" id="10" value="10" />
+   </div>
+
+  <script>
+      var tot;
+      var final=0;
+      var count=0;
+      tot=Math.floor(Math.random()*10)+1;
+      document.getElementById("randNum").innerHTML=tot;
+
+   /*   for(var x=1;x<=10;x++){
+          var div=document.getElementById("div3");
+          var btn=document.createElement("Button");
+          var text=document.createTextNode(x);
+          btn.appendChild(text);
+          btn.setAttribute("id",x);
+          btn.setAttribute("onclick","myData(this)");
+          div.appendChild(btn);
+      } */
+
+      function myData(str) {
+          str.style.display='none';
+          var id=str.id;
+          var a=str.value;
+          final+=Number(a);
+          document.getElementById("div2").innerHTML+='<input type="button" onclick="myDataBack(this)" id='+id+' value='+a+' /> ';
+      }
+
+      function myDataBack(str) {
+          str.style.display='none';
+          var id=str.id;
+          var a=str.value;
+          final-=Number(a);
+          document.getElementById("div3").innerHTML+='<input type="button" onclick="myData(this)" id='+id+' value='+a+' /> ';
+      }
+
+    function sub() {
+      if(tot==final) {
+          alert("U win the game");
+          document.getElementById("div2").innerHTML='';
+          final=0;
+      }
+      else if(tot>final){
+          alert("Random number > final value");
+      }
+      else {
+              alert("Random number < final value");
+      }
+    }
+      function ref() {
+           if(count<4) {
+               tot=Math.floor(Math.random()*10)+1;
+               document.getElementById("randNum").innerHTML=tot;
+               count++;
+           }
+           else
+           {
+               alert("u r loss");
+           }
+      }
+
+  </script>
+
+
+
+
+</body>
+</html>

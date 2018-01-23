@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax Example</title>
+</head>
+<body>
+ <script>
+     var myobj=[];
+var xml=new XMLHttpRequest();
+ xml.onreadystatechange=function(){
+   if(this.status==200 && this.readyState==4){
+        myobj=this.responseText;
+   }
+  }
+  xml.open("GET","data.json",true);
+ xml.send();
+ </script>
+</body>
+</html>
