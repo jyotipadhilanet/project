@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Welcome</h1>
+<form method="post" action="/postuser">
+    <input type="text" name="name" id="name">
+    <input type="submit" value="Insert User">
+    <button onclick="get()">Get User</button>
+    <button onclick="delet()">Delete User</button>
+    <button onclick="select()">Select user</button>
+</form>
+<script>
+    function get() {
+        var dt=document.getElementById("name").value;
+        var xml= new XMLHttpRequest();
+        xml.onreadystatechange=function () {
+            if (this.readyState == 4 && this.status == 200) {
+                alert(xml.responseText);
+            }
+        }
+        xml.open("GET","/user?name="+dt,true);
+        xml.send();
+    }
+    function select() {
+        var xml= new XMLHttpRequest();
+        xml.open("GET","/select",true);
+        xml.onreadystatechange=function () {
+            if (this.readyState == 4 && this.status == 200) {
+                var data=JSON.parse(xml.responseText);
+                data.forEach((v)=>{
+                    console.log(v.name);
+                })
+            }
+        }
+        xml.send();
+    }
+</script>
+</body>
+</html>

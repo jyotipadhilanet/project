@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Enter User name :-<input type="text" name="name">
+<input type="submit" value="click me" >
+<button onclick="add()">Add user</button>
+<button onclick="get()">Get User</button>
+<button onclick="select()">Select user</button>
+</body>
+<script>
+
+
+    function add() {
+        var xml= new XMLHttpRequest();
+        xml.open("POST","/postuser",true);
+      //  var params = {name:"ipsum"};
+        xml.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        xml.onreadystatechange=function () {
+            if (this.readyState == 4 && this.status == 200) {
+                alert(xml.responseText);
+            }
+        }
+        xml.send(JSON.stringify({ name: "jyoti padhi"}));
+    }
+    function get() {
+        var xml= new XMLHttpRequest();
+        xml.open("GET","/user?name=hello",true);
+
+        xml.onreadystatechange=function () {
+            if (this.readyState == 4 && this.status == 200) {
+                alert(xml.responseText);
+            }
+        }
+        xml.send();
+    }
+    function select() {
+        var xml= new XMLHttpRequest();
+        xml.open("GET","/select",true);
+
+        xml.onreadystatechange=function () {
+            if (this.readyState == 4 && this.status == 200) {
+                var data=xml.responseText;
+                console.log(data);
+                var arr=JSON.parse(data);
+                arr.forEach(function (t) {
+                    console.log(t.name);
+                })
+
+            }
+        }
+        xml.send();
+    }
+</script>
+</html>
