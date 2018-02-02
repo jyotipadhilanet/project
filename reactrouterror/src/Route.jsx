@@ -45,6 +45,14 @@ class Form extends React.Component {
     }
 }
 
+const NotFound=()=>{
+    return(
+        <h1>404 - Error..
+            Page Not Found</h1>
+
+    )
+}
+
 const Content=(props)=>{
     return(
         <div>
@@ -58,14 +66,6 @@ const Content=(props)=>{
 const contentDetails=(props)=>{
     return(
         <div>{props.match.params.contentName}</div>
-    )
-}
-
-const NotFound=()=>{
-    return(
-        <h1>404 - Error..
-            Page Not Found</h1>
-
     )
 }
 

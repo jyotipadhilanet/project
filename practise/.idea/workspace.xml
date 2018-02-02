@@ -14,22 +14,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="6colorMatch.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/6colorMatch.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="60" column="24" lean-forward="true" selection-start-line="60" selection-start-column="24" selection-end-line="60" selection-end-column="24" />
-              <folding>
-                <marker date="1515991414464" expanded="true" signature="1020:1037" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="7friendsList.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/7friendsList.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="460">
+            <state relative-caret-position="833">
               <caret line="49" column="22" lean-forward="false" selection-start-line="49" selection-start-column="22" selection-end-line="49" selection-end-column="22" />
               <folding />
             </state>
@@ -39,7 +27,7 @@
       <file leaf-file-name="9Last.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/9Last.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="284">
+            <state relative-caret-position="2091">
               <caret line="123" column="38" lean-forward="false" selection-start-line="123" selection-start-column="24" selection-end-line="123" selection-end-column="38" />
               <folding />
             </state>
@@ -49,7 +37,7 @@
       <file leaf-file-name="11Ajax.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/11Ajax.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="658">
+            <state relative-caret-position="1428">
               <caret line="84" column="7" lean-forward="false" selection-start-line="84" selection-start-column="7" selection-end-line="84" selection-end-column="7" />
               <folding />
             </state>
@@ -59,7 +47,7 @@
       <file leaf-file-name="10JsonUse.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/10JsonUse.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
+            <state relative-caret-position="833">
               <caret line="49" column="52" lean-forward="false" selection-start-line="49" selection-start-column="43" selection-end-line="49" selection-end-column="52" />
               <folding />
             </state>
@@ -106,11 +94,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="1NumCheck.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="1NumCheck.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/1NumCheck.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="369">
+            <state relative-caret-position="646">
               <caret line="38" column="0" lean-forward="true" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="maintainTrip.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/maintainTrip.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="476">
+              <caret line="121" column="60" lean-forward="true" selection-start-line="120" selection-start-column="38" selection-end-line="121" selection-end-column="60" />
               <folding />
             </state>
           </provider>
@@ -187,7 +185,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="698" />
     <option name="width" value="800" />
     <option name="height" value="860" />
@@ -247,7 +245,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../reactnode" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -287,17 +285,18 @@
       <workItem from="1515827310149" duration="1639000" />
       <workItem from="1515837643858" duration="4724000" />
       <workItem from="1515990844230" duration="6856000" />
+      <workItem from="1517479927719" duration="66000" />
+      <workItem from="1517483921246" duration="9000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="123021000" />
+    <option name="totallyTimeSpent" value="123096000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11913815" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1400507" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -516,7 +515,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
           <caret line="28" column="8" lean-forward="true" selection-start-line="28" selection-start-column="8" selection-end-line="28" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -524,7 +522,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="14" column="21" lean-forward="false" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -532,7 +529,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="646">
           <caret line="38" column="22" lean-forward="false" selection-start-line="38" selection-start-column="22" selection-end-line="38" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -540,7 +536,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="681">
           <caret line="92" column="7" lean-forward="false" selection-start-line="92" selection-start-column="7" selection-end-line="92" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -548,17 +543,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
           <caret line="135" column="13" lean-forward="true" selection-start-line="135" selection-start-column="13" selection-end-line="135" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/6colorMatch.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="60" column="24" lean-forward="true" selection-start-line="60" selection-start-column="24" selection-end-line="60" selection-end-column="24" />
-          <folding>
-            <marker date="1515991414464" expanded="true" signature="1020:1037" ph="..." />
-          </folding>
+        <state relative-caret-position="1020">
+          <caret line="60" column="24" lean-forward="false" selection-start-line="60" selection-start-column="24" selection-end-line="60" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -566,13 +557,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="629">
           <caret line="37" column="7" lean-forward="false" selection-start-line="37" selection-start-column="7" selection-end-line="37" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/7friendsList.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="460">
+        <state relative-caret-position="833">
           <caret line="49" column="22" lean-forward="false" selection-start-line="49" selection-start-column="22" selection-end-line="49" selection-end-column="22" />
           <folding />
         </state>
@@ -580,7 +570,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/9Last.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
+        <state relative-caret-position="2091">
           <caret line="123" column="38" lean-forward="false" selection-start-line="123" selection-start-column="24" selection-end-line="123" selection-end-column="38" />
           <folding />
         </state>
@@ -588,7 +578,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/11Ajax.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="658">
+        <state relative-caret-position="1428">
           <caret line="84" column="7" lean-forward="false" selection-start-line="84" selection-start-column="7" selection-end-line="84" selection-end-column="7" />
           <folding />
         </state>
@@ -596,16 +586,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/10JsonUse.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
+        <state relative-caret-position="833">
           <caret line="49" column="52" lean-forward="false" selection-start-line="49" selection-start-column="43" selection-end-line="49" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/maintainTrip.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="681">
-          <caret line="592" column="21" lean-forward="true" selection-start-line="592" selection-start-column="21" selection-end-line="592" selection-end-column="21" />
           <folding />
         </state>
       </provider>
@@ -644,8 +626,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/1NumCheck.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
+        <state relative-caret-position="646">
           <caret line="38" column="0" lean-forward="true" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/maintainTrip.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="121" column="60" lean-forward="true" selection-start-line="120" selection-start-column="38" selection-end-line="121" selection-end-column="60" />
           <folding />
         </state>
       </provider>

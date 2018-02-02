@@ -1,27 +1,44 @@
 import React, { Component } from 'react';
 import Modal from 'react-modal';
-class ModelEx extends Component{
+import './App.css'
+class ModelEx extends React.Component{
     constructor(){
-        super();
+        super()
         this.state={
-            vis:false
+            name:'',
+            isActive:false
+
         }
-        this.getmodel=this.getmodel.bind(this);
     }
-    getmodel() { this.setState({vis:!this.state.vis})}
-    componentWillMount(){
-        Modal.setAppElement('body');
+    onInputChanged=(e)=>{
+        this.setState({
+            name:e.target.value
+        })
+    }
+    toggleModal=()=>{
+        this.setState({
+            isActive:!this.state.isActive
+        })
     }
     render(){
         return(
-            <div>
-             <button onclick={this.getmodel}>Show Model</button>
-             <Modal isOpen={this.state.vis} onRequestClose={this.getmodel}>
-                         <button onclick={this.getmodel}>Hide Model</button>
-               Hello from Model
-             </Modal>
-            </div>
+            <section>
+                <input type="text" value={this.state.name} onChange={this.onInputChanged}/>
+                <button onClick={this.toggleModal} disabled={this.state.name.length?false:true} type="submit" >Submit</button>
+
+                <Modal  isOpen={this.state.isActive} onRequestClose={this.toggleModal}>
+                    <div>
+                        <button onClick={this.toggleModal}>Hide model</button>
+                        <p>{this.state.name}</p>
+                    </div>
+                </Modal>
+            </section>
         )
     }
 }
+
 export default ModelEx;
+
+
+
+

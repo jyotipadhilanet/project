@@ -5,7 +5,9 @@ import './App.css';
 //import Pro from './proptypesExample'
 //import Exm from './RouteExm'
 //import Nroute from './newroute'
-import Modelex from './Model'
+import Model from './Model'
+//import Modelex from './Model'
+import Myroute from './myroute'
 class App extends Component {
   render() {
     return (
@@ -18,7 +20,7 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
 
- <Modelex/>
+ <Model/>
       </div>
     );
   }
