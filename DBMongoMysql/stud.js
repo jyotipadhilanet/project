@@ -1,5 +1,6 @@
 var express=require ('express')
 var app=express();
+
 var mongoose=require('mongoose');
 var url="mongodb://localhost:27017/mydb";
 mongoose.Promise=global.Promise;
@@ -14,6 +15,58 @@ app.use((req,res,next) =>{
     next();
 });
 
+var state=mongoose.model('state',{
+    _id:{
+        type:Number
+    },
+    name:{
+        type:String,
+        require:true
+    }
+});
+var city=mongoose.model('city',{
+    stateid:{
+        type:Number,
+        require:true
+    },
+    name:{
+        type:String,
+        require:true
+    }
+});
+
+app.get('/cityfetch/:nm',(req,res)=> {
+    var msg=req.params.nm;
+    console.log(msg);
+    if(msg!="Select State"){
+        state.find({name:msg},(err, user)=> {
+            if (err) throw error;
+            city.find({stateid:user[0]._id}, (err, user) => {
+                if (err) throw error;
+                console.log(user)
+                res.send(user);
+            });
+        })
+    }
+});
+
+
+app.get('/statefetch',(req,res)=> {
+    state.find({},(err, user)=>{
+        if(err) throw error;
+        console.log(user)
+        res.send(user);
+    });
+});
+
+app.get('/sortfetch',(req,res)=> {
+    emp.find({}).limit(5).sort({name:1}).then((user)=>{
+        console.log(user)
+        res.send(user);
+    }).catch((err)=>{
+        if(err) throw error;
+    })
+});
 
 app.listen(5000,()=>{
     console.log("server start on port 5000");
@@ -64,24 +117,32 @@ app.post('/del',(req,res)=>{
 
 app.post('/savedata',(req,res)=> {
     console.log("Req:", req.body);
-    var infor = new user({
-        name:req.body.name,
-        surname:req.body.surname,
-        pass:req.body.pass,
-        email:req.body.email,
-        mob:req.body.mob,
-        emer:req.body.emer,
-        addr:req.body.addr,
-        city:req.body.city,
-        state:req.body.state,
-        zip:req.body.zip
-    });
+    if(req.body.name.length!=0) {
 
-    infor.save().then((suceess)=>{
-        console.log(suceess);
-    }).catch((err)=>{
-        console.log(err)
+        var infor = new user({
+            name: req.body.name,
+            surname: req.body.surname,
+            pass: req.body.pass,
+            email: req.body.email,
+            mob: req.body.mob,
+            emer: req.body.emer,
+            addr: req.body.addr,
+            city: req.body.city,
+            state: req.body.state,
+            zip: req.body.zip
+        });
+
+        infor.save().then((suceess) => {
+            console.log(suceess);
+        }).catch((err) => {
+            console.log(err)
+        });
+    }
+else {  user.find({}, (err, user) => {
+        if (err) throw error;
+        res.status(200).send(user);
     });
+}
 });
 
 app.post('/upd',(req,res)=>{

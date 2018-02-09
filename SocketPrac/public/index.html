@@ -1,20 +1,26 @@
+
 <!DOCTYPE html>
-<html lang="en">
+
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <title>Socket Example </title>
+    <meta charset="utf-8">
 </head>
+
 <body>
-<p>We start Socket Example Now</p>
+<p>Welcome to the chat app</p>
+
+<ol id="messages"></ol>
+
+<form id="message-form">
+    <input name="message" id="msg" type="text" placeholder="Message"/>
+    <button id="send">Send</button>
+    <button id="loc">Send Location</button>
+</form>
+
 <script src="/socket.io/socket.io.js"></script>
-<script>
-    var socket = io();
-    socket.on('connect',()=>{
-     console.log("connected to server")
-    })
-    socket.on('disconnect',()=>{
-        console.log("disconnected to server")
-    })
-</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
 </body>
+
 </html>
