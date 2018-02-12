@@ -11,7 +11,7 @@ var passport=require('passport');
 var LocalStrategy=require('passport-local').Strategy;
 app.use(passport.initialize());
 app.use(bodyparser.json());
-app.use(bodyparser.urlencoded({encoded:true}))
+app.use(bodyparser.urlencoded({extended:true}))
 
 passport.serializeUser((user,done)=>{
     console.log("in serialize Method");

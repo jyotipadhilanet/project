@@ -67,6 +67,38 @@ var emp=mongoose.model('emp',{
     }
 });
 
+
+var user=mongoose.model('info',{
+    name:{
+        type:String,
+        require:true
+    },
+    surname:{
+        type:String,
+        require:true
+    },
+    pass:{
+        type:String,
+        require:true
+    },
+    email:{
+        type:String
+    },
+    mob:{
+        type:String
+    },
+    emer:{
+        type:String
+    },
+    addr:{ type:String},
+    city:{type:String},
+    state:{ type:String},
+    zip:{type:String}
+});
+
+
+
+
 app.get('/cityfetch/:nm',(req,res)=> {
     var msg=req.params.nm;
     console.log(msg);
@@ -155,13 +187,13 @@ app.post('/upd',(req,res)=>{
 app.post('/login',(req,res)=>{
     var nm=req.body.name;
     var pas=req.body.pass;
-    console.log(nm,pas);
     var obj={name:nm,pass:pas};
-    emp.findOne({'name':nm,'pass':pas},(err,someValue)=>{
+    user.findOne({'name':nm,'pass':pas},(err,someValue)=>{
         if (err) throw error;
         res.status(200).send(someValue);
     });
 })
+
 
 app.get('/fetch/:id',(req,res)=> {
     var id=req.params.id;

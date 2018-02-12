@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 const axios=require('axios');
 const toastr=require('toastr');
-class App extends Component {
+class Crud extends Component {
     constructor(){
         super();
         this.state= {
@@ -42,7 +42,28 @@ class App extends Component {
         this.initial();
         this.statefetch();
     }
+    logout=()=>{
+        sessionStorage.setItem('user','')
+        sessionStorage.setItem('type','')
+        this.props.history.push('/login')
+    }
     initial=()=>{
+        var gmail=sessionStorage.getItem('type');
+        var data = sessionStorage.getItem('user')
+        if(gmail.length<1 && data.length<1){
+            this.props.history.push('/login')
+        }
+        if(gmail==='gmail'){
+            console.log("user logged with email")
+        }
+        else {
+
+            console.log(data)
+            console.log("user logged with normal")
+            if (data.length < 1) {
+                this.props.history.push('/login')
+            }
+        }
         axios.get('http://localhost:5000/fetchdata').then((sucess)=>{
             this.setState({data1:sucess.data},()=>{
                 this.fetlimit(1);
@@ -112,9 +133,9 @@ class App extends Component {
     }
 
     search=(e)=>{
-      var data=e.target.value
+        var data=e.target.value
         if(e.target.value.length!=0) {
-           this.setState({isSearch:true})
+            this.setState({isSearch:true})
             this.state.searchdata = []
             console.log(data)
             this.state.data1.map((v, i) => {
@@ -167,26 +188,26 @@ class App extends Component {
             console.log("error is=", err);
         });
         this.setState({Deleteid:''})
-       }
+    }
 
-       edtInfo=(e)=>{
+    edtInfo=(e)=>{
         this.setState({IDInfo:e})
-           axios.post('http://localhost:5000/fetchid', {
-               id: e
-           }).then((sucess) => {
-               console.log(sucess.data);
-              document.getElementById("uname").value=sucess.data.name,
-                  document.getElementById("ulast").value=sucess.data.last,
-                  document.getElementById("uemail").value=sucess.data.email,
-                  document.getElementById("ucity").value=sucess.data.city,
-                  document.getElementById("ustate").value=sucess.data.state
+        axios.post('http://localhost:5000/fetchid', {
+            id: e
+        }).then((sucess) => {
+            console.log(sucess.data);
+            document.getElementById("uname").value=sucess.data.name,
+                document.getElementById("ulast").value=sucess.data.last,
+                document.getElementById("uemail").value=sucess.data.email,
+                document.getElementById("ucity").value=sucess.data.city,
+                document.getElementById("ustate").value=sucess.data.state
 
-               this.setState({edtname:sucess.data.name,edtlast:sucess.data.last,edtemail:sucess.data.email,edtstate:sucess.data.state,edtcity:sucess.data.city})
-               console.log(this.state)
-           }).catch((err) => {
-               console.log("error is=", err);
-           });
-       }
+            this.setState({edtname:sucess.data.name,edtlast:sucess.data.last,edtemail:sucess.data.email,edtstate:sucess.data.state,edtcity:sucess.data.city})
+            console.log(this.state)
+        }).catch((err) => {
+            console.log("error is=", err);
+        });
+    }
 
     upadteData=(name,last,email,state,city)=>{
         console.log('upadted data =',name,last,email,state,city);
@@ -209,7 +230,7 @@ class App extends Component {
     submitData=(name,last,email,state,city)=>{
         if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(document.getElementById("email").value))
         {
-                document.getElementById("name").value="",
+            document.getElementById("name").value="",
                 document.getElementById("last").value="",
                 document.getElementById("email").value="",
                 document.getElementById("city").value="",
@@ -257,7 +278,7 @@ class App extends Component {
         var paginate=Math.ceil(this.state.data1.length/this.state.numreco)
         var pageArr=[]
         for(let i=1;i<=paginate;i++){
-           pageArr.push(i);
+            pageArr.push(i);
         }
         console.log(len,paginate,pageArr)
 
@@ -349,7 +370,7 @@ class App extends Component {
                             </div>
 
                             <div class="modal-body">
-                             R u sure u want to delete a record??
+                                R u sure u want to delete a record??
                             </div>
                             <div class="modal-footer">
                                 <button type="submit" className="btn btn-primary"  data-dismiss="modal" onClick={()=>{this.delData()}}> Yes</button>
@@ -442,39 +463,43 @@ class App extends Component {
                 <div>
                     <div className="form-row">
                         <div className="form-group col-md-2" >
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-                            + Add Employee
-                        </button>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                                + Add Employee
+                            </button>
                         </div>
 
                         <div className="form-group col-md-2" >
                             <input type="text" className="form-control is-valid" onChange={this.searchp} placeholder="search on particular page"/>
                         </div>
                         <div className="form-group col-md-1" >
-                                <span className="btn btnsrch insearch"><i class="fa fa-search"></i></span>
+                            <span className="btn btnsrch insearch"><i class="fa fa-search"></i></span>
                         </div>
 
 
                         <div className="form-group col-md-2" >
-                           <input type="text" className="form-control is-valid" onChange={this.search} placeholder="search All" />
+                            <input type="text" className="form-control is-valid" onChange={this.search} placeholder="search All" />
                         </div>
                         <div className="form-group col-md-1" >
                             <span className="btn btnsrch insearch"><i class="fa fa-search"></i></span>
                         </div>
 
                         <div className="form-group col-md-1" >
-                          <select className="form-control is-valid" onChange={this.numrec} id="numrecord">
+                            <select className="form-control is-valid" onChange={this.numrec} id="numrecord">
                                 <option value="3">3</option>
                                 <option value="5">5</option>
                                 <option value="10">10</option>
                             </select>
                         </div>
 
-                        <div className="form-group col-md-3" >
+                        <div className="form-group col-md-2" >
                             {  pageArr.map((v,i)=>{
                                 return  <button type="button" className="btn btn-primary" onClick={()=>this.fetlimit(v)} value={v}>{v}</button>
                             })
-                                }
+                            }
+                        </div>
+
+                        <div className="form-group col-md-1" >
+                            <a href="" onClick={this.logout}>logout</a>
                         </div>
                     </div>
 
@@ -485,7 +510,7 @@ class App extends Component {
                         <tbody>
                         <tr><th>First Name  <a id="name" onClick={this.sort}>&#9650;</a>
                             <a id="name" onClick={this.dsort}>&#9660;</a>
-                            </th>
+                        </th>
                             <th>Last Name  <a id="last" onClick={this.sort}>&#9650;</a>
                                 <a id="last" onClick={this.dsort}>&#9660;</a>
                             </th><th>email
@@ -533,4 +558,4 @@ class App extends Component {
             </div>
         )}
 }
-export default App;
+export default Crud;

@@ -12,6 +12,13 @@ import Login from './Login'
 import Menu from './menu'
 import ReactEx from './ReactStrapEx'
 import Home from './Home'
+import Crud from  './crud'
+
+const logout=()=>{
+    sessionStorage.setItem('user','')
+    sessionStorage.setItem('type','')
+    this.props.history.push('/login')
+}
 
 const gallery=()=>{
     return(
@@ -58,7 +65,6 @@ const About=()=>{
     "Very bad quality education....no value at all ...any where.." <br/>
     "It is clean and has all the necessary facilities like drinking water, wifi etc." <br/>
     <a href=""> View all Google reviews</a> <br/>
-
     </div>
     </div>
     </div>
@@ -77,10 +83,9 @@ const Links=()=>{
         <NavLink className="list-group-item" exact  activeClassName="list-group-item active" to="/" >Home</NavLink>
         <NavLink className="list-group-item" activeClassName="list-group-item active"  to="/about">About </NavLink>
         <NavLink className="list-group-item" activeClassName="list-group-item active"  to="/login">Login </NavLink>
-        <NavLink className="list-group-item" activeClassName="list-group-item active"  to="/form" >Form </NavLink>
         <NavLink className="list-group-item" activeClassName="list-group-item active"  to="/content">content </NavLink>
+        <NavLink className="list-group-item" activeClassName="list-group-item active"  to="/crud">All Data </NavLink>
         <NavLink className="list-group-item" exact  activeClassName="list-group-item active" to="/gallery" >Gallery</NavLink>
-        <NavLink className="list-group-item" activeClassName="list-group-item active" to="/ReactEx">ReactEx </NavLink>
         <NavLink className="list-group-item" activeClassName="list-group-item active" to="/Menu">Menu </NavLink>
         </div>
         </div>
@@ -89,12 +94,13 @@ const Links=()=>{
 const LinkVertical=()=>{
     return(
         <div>
-        <NavLink  exact  to="/" >Home |</NavLink>
+        <NavLink  exact  to="/" >Home   |</NavLink>
         <NavLink  to="/about">About |</NavLink>
         <NavLink   to="/login">Login |</NavLink>
-        <NavLink   to="/form" >Form |</NavLink>
         <NavLink  to="/content">content |</NavLink>
+        <NavLink to="/gallery">Gallery   |</NavLink>
         <NavLink   to="/Menu">Menu |</NavLink>
+         <a className="mustright" href="" onClick={logout}>logout</a>
         </div>
 )
 }
@@ -147,9 +153,9 @@ const App=()=>{
     <Route  path="/form" component={Form}/>
     <Route  path="/content" component={Content}/>
     <Route  path="/login" component={Login}/>
+    <Route  path="/crud" component={Crud}/>
     <Route path="/list" component={ListForm}/>
     <Route path="/gallery" component={gallery}/>
-    <Route path="/ReactEx" component={ReactEx} />
     <Route path="/Menu" component={Menu} />
     <Route component={notFound}/>
     </Switch>
