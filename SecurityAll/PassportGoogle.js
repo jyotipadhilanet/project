@@ -1,7 +1,7 @@
 var express=require('express');
 var app=express();
 
-var validator=require('validator');
+var validator=require('validator')
 var bodyparser=require('body-parser');
 
 var mongoose=require('mongoose');
@@ -136,7 +136,11 @@ var emp=mongoose.model('emp',{
     },
     email:{
         type:String,
-        require:true
+        require:true,
+        validate:{
+            validator:validator.isEmail,
+            message:'{VALUE} is not valid email'
+        }
     },
     state:{ type:String,
         require:true
@@ -144,7 +148,13 @@ var emp=mongoose.model('emp',{
     city:{
         type:String,
         require:true
+    },
+    flag:{
+        type:Number,
+        require:true
     }
+
+
 });
 
 
@@ -214,106 +224,150 @@ app.get('/statefetch',(req,res)=> {
 
 
 app.post('/del',(req,res)=>{
-    emp.findByIdAndRemove(req.body.id, (err, todo) => {
-        console.log(todo._id);
-        //  res.send(todo._id);
-        emp.find({}).sort({_id:-1}).then((user) => {
+    console.log(req.body.id)
+    emp.findById(req.body.id).then((p) => {
+        p.flag = 0;
+        p.save().then((user) => {
+            console.log('flag change successfully')
             console.log(user)
-            res.send(user);
+            res.send(user._id)
         }).catch((err) => {
-            if (err) throw error;
+            console.log(err)
         })
+    }).catch((err) => {
+        console.log(err)
     })
 });
+  /*  emp.findByIdAndRemove(req.body.id, (err, todo) => {
+        console.log(todo._id);
+          res.send(todo._id);
+ emp.find({}).sort({_id:-1}).then((user) => {
+     console.log(user)
+     res.send(user);
+ }).catch((err) => {
+     if (err) throw error;
+ })
+})*/
+
 
 app.post('/savedata',(req,res)=> {
-    var infor = new emp({
-        name: req.body.name,
-        last: req.body.last,
-        email: req.body.email,
-        state: req.body.state,
-        city: req.body.city
-    });
-
-    infor.save().then((suceess) => {
-        console.log(suceess);
-        // res.send(suceess);
-
-        emp.find({}).sort({_id:-1}).then((user) => {
-            console.log(user)
-            res.send(user);
-        }).catch((err) => {
-            if (err) throw error;
-        })
-    })
+    //console.log('file is=====================================================================',req.body.file)
+var infor = new emp({
+ name: req.body.name,
+ last: req.body.last,
+ email: req.body.email,
+ state: req.body.state,
+ city: req.body.city,
+ flag:1
 });
 
+infor.save().then((suceess) => {
+ console.log(suceess);
+  res.send(suceess);
+}).catch((err) => {
+   if (err) throw error;
+})
+});
 
-app.post('/upd',(req,res)=>{
-    console.log('data',req.body);
-    var updobj={$set: {name:req.body.name,last:req.body.last,email:req.body.email,state:req.body.state,city:req.body.city}};
-    emp.findByIdAndUpdate(req.body._id,updobj,(err, user)=>{
-        if (err) throw err;
-        console.log('upadted');
-    });
-    emp.find({}).sort({_id:-1}).then((user) => {
-        console.log(user)
-        res.send(user);
+/*  emp.find({}).sort({_id:-1}).then((user) => {
+   console.log(user)
+   res.send(user); */
+
+
+app.post('/upd',(req,res)=> {
+    console.log('data', req.body);
+    var updobj = {
+        $set: {
+            name: req.body.name,
+            last: req.body.last,
+            email: req.body.email,
+            state: req.body.state,
+            city: req.body.city
+        }
+    };
+    emp.findById(req.body._id).then((p) => {
+        p.name = req.body.name
+        p.last = req.body.last
+        p.email = req.body.email
+        p.state = req.body.state
+        p.city = req.body.city
+        p.save().then((user) => {
+            console.log('updated successfully')
+            console.log(user)
+            res.send(user)
+        }).catch((err) => {
+            console.log(err)
+        })
     }).catch((err) => {
-        if (err) throw error;
+        console.log(err)
     })
 })
 
+
+/*emp.findByIdAndUpdate(req.body._id,updobj,(err, user)=>{
+if (err) throw err;
+console.log('upadted');
+});
+emp.find({}).sort({_id:-1}).then((user) => {
+console.log(user)
+res.send(user);
+}).catch((err) => {
+if (err) throw error;
+})
+}) */
+
+
+
 app.post('/login',(req,res)=>{
-    var nm=req.body.name;
-    var pas=req.body.pass;
-    var obj={name:nm,pass:pas};
-    user.findOne({'name':nm,'pass':pas},(err,someValue)=>{
-        if (err) throw error;
-        res.status(200).send(someValue);
-    });
+var nm=req.body.name;
+var pas=req.body.pass;
+var obj={name:nm,pass:pas};
+user.findOne({'name':nm,'pass':pas},(err,someValue)=>{
+if (err) throw error;
+res.status(200).send(someValue);
+});
 })
 
 
 app.get('/fetch/:id',(req,res)=> {
-    var id=req.params.id;
-    console.log(id)
-    if( id==1) {
-        emp.find({}).limit(3).then((user) => {
-            console.log(user)
-            res.send(user);
-        }).catch((err) => {
-            if (err) throw error;
-        })
-    }
-    else if(id>1){
-        emp.find({}).limit(3).skip(3*(id-1)).then((user) => {
-            console.log(user)
-            res.send(user);
-        }).catch((err) => {
-            if (err) throw error;
-        })
-    }
+var id=req.params.id;
+console.log(id)
+if( id==1) {
+emp.find({}).limit(3).then((user) => {
+   console.log(user)
+   res.send(user);
+}).catch((err) => {
+   if (err) throw error;
+})
+}
+else if(id>1){
+emp.find({}).limit(3).skip(3*(id-1)).then((user) => {
+   console.log(user)
+   res.send(user);
+}).catch((err) => {
+   if (err) throw error;
+})
+}
 });
 
 app.get('/fetchdata',(req,res)=> {
-    emp.find({}).sort({_id:-1}).then((user) => {
-        console.log(user)
-        res.send(user);
-    }).catch((err) => {
-        if (err) throw error;
-    })
+emp.find({flag:1}).sort({_id:-1}).then((user) => {
+console.log(user)
+res.send(user);
+}).catch((err) => {
+if (err) throw error;
+})
 });
 
 
 app.post('/fetchid',(req,res)=> {
-    console.log(req.body.id);
-    emp.findById(req.body.id).then((user) => {
-        console.log(user)
-        res.send(user);
-    }).catch((err) => {
-        if (err) throw error;
-    })
+console.log(req.body.id);
+emp.findById(req.body.id).then((user) => {
+console.log(user)
+res.send(user);
+}).catch((err) => {
+if (err) throw error;
+})
 });
 
 

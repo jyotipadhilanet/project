@@ -1,10 +1,21 @@
 var mongoClient=require('mongodb').MongoClient;
-var url="mongodb://localhost:27017/";
+var url="mongodb://localhost:27017/mydb";
 
 mongoClient.connect(url,(err,db)=>{
     if(err) throw error;
-    var dbo=db.db('mydb');
 
+    db.system.js.save( { _id : "Sum" ,
+        value : function(values)
+        {
+            var total = 0;
+            for(var i = 0; i < values.length; i++)
+                total += values[i];
+            return total;
+        }});
+    db.loadServerScript();
+    db.Sum(50);
+
+});
 
 
     //for update Collection
@@ -61,16 +72,82 @@ mongoClient.connect(url,(err,db)=>{
       });*/
 
     ///find specific property from object
-    dbo.collection('info').find({},{ _id:0 }).toArray((err,res)=>{
-        if(err) throw err;
-        console.log(res);
-        db.close();
+    /* dbo.collection('info').find({},{ _id:0 }).toArray((err,res)=>{
+         if(err) throw err;
+         console.log(res);
+         db.close();
+     }); */
+
+
+     //stored procedure in mongodb
+     //    db.system.js.save({_id:”sum”,value:function(x,y){return x+y}});
+
+ /*   console.log(db.eval(function(x,y) { return addNumbers(x, y); }, 17, 25))
+
+    dbo.collection('system.js', function (e, coll) {
+        if (e)  throw e
+
+        coll.save({_id:"addNumbers", value:function(x, y){ return x + y; }});
+
+        // coll.save({
+        //     "_id" : "myFunction",
+        //     "value" : "function myFunction() { return 123; }"
+        // }, function (e) {
+        //     if (e)  throw e
+
+       console.log(dbo.eval('addNumbers(17, 25)'))
+        //     dbo.eval("addNumbers", function (e, result) {
+        //         if (e)  throw e
+        //            console.log(result)
+        //       //  callback(undefined, result);
+        //     });
+        //
+        // });
     });
 
-    //sorting example
-    /*      dbo.collection('info').find(query1).sort({name:1}).toArray((err,res)=>{
-          console.log(res)
-     }) */
+
+  //  db.collection.save()
+    db.system.js.save(
+        {
+            _id: "echoFunction",
+            value : function(x) { return x; }
+        }
+    )
+
+    db.system.js.save(
+        {
+            _id : "myAddFunction" ,
+            value : function (x, y){ return x + y; }
+        }
+    );
+
+    db.loadServerScripts();
+
+    echoFunction(3);
+
+    myAddFunction(3, 5);  */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // db.system.js.save({_id:"addNumbers", value:function(x, y){ return x + y; }})
+   // console.log(db.eval('addNumbers(17, 25)'));
+
+
+     //sorting example
+     /*      dbo.collection('info').find(query1).sort({name:1}).toArray((err,res)=>{
+           console.log(res)
+      }) */
 
 //for delete data
     /*  var query1 = { address: /^S/ };
@@ -100,4 +177,3 @@ mongoClient.connect(url,(err,db)=>{
           console.log(JSON.stringify(res));
       }); */
 
-});

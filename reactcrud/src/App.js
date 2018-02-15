@@ -149,14 +149,24 @@ class App extends Component {
     }
 
 
-
-
     delData=()=> {
         axios.post('http://localhost:5000/del', {
             id: this.state.Deleteid
         }).then((sucess) => {
-            console.log(sucess.data);
-            this.setState({data1: sucess.data})
+
+
+
+
+            console.log('after delete data is=',sucess.data);
+            var info=this.state.data1.splice(sucess.data,1)
+            this.setState({data1:this.state.data1})
+            console.log(this.state.data1)
+
+
+
+
+
+
 
             toastr.info('<div className="styleInfo"><h1><i>Deleted successfully</i></h1></div>');
 
@@ -190,7 +200,6 @@ class App extends Component {
 
     upadteData=(name,last,email,state,city)=>{
         console.log('upadted data =',name,last,email,state,city);
-        this.setState({isEditing: false, IDInfo:''});
         axios.post('http://localhost:5000/upd',{
             _id:this.state.IDInfo,
             name:name,
@@ -199,8 +208,22 @@ class App extends Component {
             state:state,
             city:city
         }).then((sucess)=>{
-            this.setState({edtname:'',edtlast:'',edtemail:'',edtstate:'',edtcity:'',IDInfo:''})
-            this.setState({data1:sucess.data},()=>this.fetlimit(1))
+
+          console.log('after back from update=',sucess.data)
+          console.log(this.state.IDInfo)
+
+           var index= this.state.data1.findIndex(x=>x._id===this.state.IDInfo)
+           // console.log(index)
+            var mydata=this.state.data1.filter((d)=>d._id!==this.state.IDInfo);
+            console.log('after filter',mydata)
+            mydata.splice(index,0,sucess.data);
+            console.log('correct data',mydata)
+
+
+
+            this.setState({isEditing: false,edtname:'',edtlast:'',edtemail:'',edtstate:'',edtcity:'',IDInfo:''})
+            this.setState({data1:mydata},()=>{
+                this.fetlimit(1)})
         }).catch((err)=>{
             console.log("error is=",err);
         });
@@ -225,7 +248,9 @@ class App extends Component {
                     }
                 )
                     .then((res)=>{
-                        this.setState({data1:res.data})
+                       console.log(res.data)
+                        this.state.data1.unshift(res.data)
+                        this.setState({data1:this.state.data1})
                         console.log(this.state.data1)
                         this.fetlimit(1);
                     })

@@ -23,6 +23,8 @@ class Crud extends Component {
             city: '',
             IDInfo: '',
             isEditing: false,
+            isTrue:true,
+
             Deleteid:'',
             Upadteteid:'',
 
@@ -57,7 +59,6 @@ class Crud extends Component {
             console.log("user logged with email")
         }
         else {
-
             console.log(data)
             console.log("user logged with normal")
             if (data.length < 1) {
@@ -76,12 +77,8 @@ class Crud extends Component {
     sort=(e)=>{
         var key=e.target.id;
         console.log(key);
-        var myData = [].concat(this.state.disdata)
-            .sort((a, b) => a[key] > b[key]);
-
-        this.setState({
-            disdata:myData
-        })
+        var myData = [].concat(this.state.disdata).sort((a, b) => a[key] > b[key]);
+        this.setState({disdata:myData})
         console.log('sorted : ',this.state.disdata);
     }
 
@@ -176,8 +173,11 @@ class Crud extends Component {
         axios.post('http://localhost:5000/del', {
             id: this.state.Deleteid
         }).then((sucess) => {
-            console.log(sucess.data);
-            this.setState({data1: sucess.data})
+
+            console.log('after delete data is=',sucess.data);
+            var info=this.state.data1.splice(sucess.data,1)
+            this.setState({data1:this.state.data1})
+            console.log(this.state.data1)
 
             toastr.info('<div className="styleInfo"><h1><i>Deleted successfully</i></h1></div>');
 
@@ -192,6 +192,7 @@ class Crud extends Component {
 
     edtInfo=(e)=>{
         this.setState({IDInfo:e})
+        this.state.citydata=[]
         axios.post('http://localhost:5000/fetchid', {
             id: e
         }).then((sucess) => {
@@ -211,7 +212,6 @@ class Crud extends Component {
 
     upadteData=(name,last,email,state,city)=>{
         console.log('upadted data =',name,last,email,state,city);
-        this.setState({isEditing: false, IDInfo:''});
         axios.post('http://localhost:5000/upd',{
             _id:this.state.IDInfo,
             name:name,
@@ -220,17 +220,35 @@ class Crud extends Component {
             state:state,
             city:city
         }).then((sucess)=>{
-            this.setState({edtname:'',edtlast:'',edtemail:'',edtstate:'',edtcity:'',IDInfo:''})
-            this.setState({data1:sucess.data},()=>this.fetlimit(1))
+
+            console.log('after back from update=',sucess.data)
+            console.log(this.state.IDInfo)
+
+            var index= this.state.data1.findIndex(x=>x._id===this.state.IDInfo)
+             console.log(index)
+            var mydata=this.state.data1.filter((d)=>d._id!==this.state.IDInfo);
+            console.log('after filter',mydata)
+            mydata.splice(index,0,sucess.data);
+            console.log('correct data',mydata)
+
+
+
+            this.setState({isEditing: false,edtname:'',edtlast:'',edtemail:'',edtstate:'',edtcity:'',IDInfo:''})
+            this.setState({data1:mydata},()=>{
+                this.fetlimit(1)})
         }).catch((err)=>{
             console.log("error is=",err);
         });
     }
 
     submitData=(name,last,email,state,city)=>{
-        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(document.getElementById("email").value))
-        {
-            document.getElementById("name").value="",
+          this.setState({isTrue:true})
+        if(document.getElementById("city").value!=='Select city'){
+        if(document.getElementById("state").value!=='Select State'){
+        if(/^[a-zA-Z]+$/.test(document.getElementById("last").value)){
+        if(/^[a-zA-Z]+$/.test(document.getElementById("name").value)){
+        if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(document.getElementById("email").value)) {
+                document.getElementById("name").value="",
                 document.getElementById("last").value="",
                 document.getElementById("email").value="",
                 document.getElementById("city").value="",
@@ -246,18 +264,31 @@ class Crud extends Component {
                     }
                 )
                     .then((res)=>{
-                        this.setState({data1:res.data})
+                        console.log(res)
+                        console.log(res.data)
+                        this.state.data1.unshift(res.data)
+                        this.setState({data1:this.state.data1})
                         console.log(this.state.data1)
                         this.fetlimit(1);
+
                     })
                     .catch((e)=>{
                         console.log("Error is="+e);
                     });
+     }else { alert("please enter valid email id")
+            this.setState({isTrue:false}) }
+     }else { alert("please enter valid name")
+            this.setState({isTrue:false})
         }
-        else {
-            alert("please enter valid email id")
+     }else { alert("please enter valid last name")
+            this.setState({isTrue:false})
         }
-
+     }else { alert("please select available state")
+            this.setState({isTrue:false})
+        }
+     }else { alert("please select available city")
+            this.setState({isTrue:false})
+        }
     };
 
     handleCityChange=(e)=>{
@@ -343,7 +374,7 @@ class Crud extends Component {
                                 </form>
                             </div>
                             <div className="modal-footer">
-                                <button type="submit" className="btn btn-primary" data-dismiss="modal" onClick={()=>{
+                                <button type="submit" className="btn btn-primary" data-dismiss="modal"   onClick={()=>{
                                     this.submitData(
                                         document.getElementById("name").value,
                                         document.getElementById("last").value,
@@ -356,10 +387,6 @@ class Crud extends Component {
                         </div>
                     </div>
                 </div>
-
-
-
-
                 <div class="modal fade" id="mydel">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -491,16 +518,13 @@ class Crud extends Component {
                             </select>
                         </div>
 
-                        <div className="form-group col-md-2" >
+                        <div className="form-group col-md-3" >
                             {  pageArr.map((v,i)=>{
-                                return  <button type="button" className="btn btn-primary" onClick={()=>this.fetlimit(v)} value={v}>{v}</button>
+                                return  <button type="button" className="btn btn-primary" onClick={this.fetlimit(v)} value={v}>{v}</button>
                             })
                             }
                         </div>
 
-                        <div className="form-group col-md-1" >
-                            <a href="" onClick={this.logout}>logout</a>
-                        </div>
                     </div>
 
 

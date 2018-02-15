@@ -15,6 +15,7 @@ class Login extends Component{
         this.props.history.push('/crud');
     }
     gmaillog(){
+
         sessionStorage.setItem('type','gmail');
     }
     submitData(){

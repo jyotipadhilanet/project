@@ -136,13 +136,13 @@ app.get('/statefetch',(req,res)=> {
 app.post('/del',(req,res)=>{
     emp.findByIdAndRemove(req.body.id, (err, todo) => {
         console.log(todo._id);
-      //  res.send(todo._id);
-        emp.find({}).sort({_id:-1}).then((user) => {
+        res.send(todo._id);
+       /* emp.find({}).sort({_id:-1}).then((user) => {
             console.log(user)
             res.send(user);
         }).catch((err) => {
             if (err) throw error;
-        })
+        })*/
     })
 });
 
@@ -157,14 +157,14 @@ app.post('/savedata',(req,res)=> {
 
         infor.save().then((suceess) => {
             console.log(suceess);
-           // res.send(suceess);
+            res.send(suceess);
 
-            emp.find({}).sort({_id:-1}).then((user) => {
+        /*    emp.find({}).sort({_id:-1}).then((user) => {
                 console.log(user)
                 res.send(user);
             }).catch((err) => {
                 if (err) throw error;
-            })
+            })*/
     })
 });
 
@@ -172,16 +172,36 @@ app.post('/savedata',(req,res)=> {
 app.post('/upd',(req,res)=>{
     console.log('data',req.body);
     var updobj={$set: {name:req.body.name,last:req.body.last,email:req.body.email,state:req.body.state,city:req.body.city}};
-    emp.findByIdAndUpdate(req.body._id,updobj,(err, user)=>{
-        if (err) throw err;
-        console.log('upadted');
-    });
-    emp.find({}).sort({_id:-1}).then((user) => {
-        console.log(user)
-        res.send(user);
-    }).catch((err) => {
-        if (err) throw error;
+
+    emp.findById(req.body._id).then((p)=>{
+        p.name=req.body.name
+        p.last=req.body.last
+        p.email=req.body.email
+        p.state=req.body.state
+        p.city=req.body.city
+        p.save().then((user)=>{
+            console.log('updated successfully')
+            console.log(user)
+            res.send(user)
+        }).catch((err)=>{
+            console.log(err)
+        })
+    }).catch((err)=>{
+        console.log(err)
     })
+
+    /* updobj,(err, info)=>{
+    if (err) throw err;
+    console.log('upadted');
+    console.log(info);
+ //   res.send(user);
+});
+emp.find({}).sort({_id:-1}).then((user) => {
+    console.log(user)
+    res.send(user);
+}).catch((err) => {
+    if (err) throw error;
+})*/
 })
 
 app.post('/login',(req,res)=>{
