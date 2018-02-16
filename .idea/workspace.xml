@@ -2,23 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4a7cc5ae-a937-4fba-9821-89cff3821698" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DBMongoMysql/sequelize.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SecurityAll/Jest.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SecurityAll/Mocha.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SecurityAll/mysql.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SecurityAll/requestValidation.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SecurityAll/sequelize.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/nodelastprac/AllData.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DBMongoMysql/mongo.js" afterPath="$PROJECT_DIR$/DBMongoMysql/mongo.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DBMongoMysql/mydata.js" afterPath="$PROJECT_DIR$/DBMongoMysql/mydata.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DBMongoMysql/mysql.js" afterPath="$PROJECT_DIR$/DBMongoMysql/mysql.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SecurityAll/PassportGoogle.js" afterPath="$PROJECT_DIR$/SecurityAll/PassportGoogle.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SecurityAll/User.js" afterPath="$PROJECT_DIR$/SecurityAll/User.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reactcrud/.idea/workspace.xml" afterPath="$PROJECT_DIR$/reactcrud/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reactcrud/src/App.js" afterPath="$PROJECT_DIR$/reactcrud/src/App.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nodelastprac/AllData.js" afterPath="$PROJECT_DIR$/nodelastprac/AllData.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nodelastprac/package-lock.json" afterPath="$PROJECT_DIR$/nodelastprac/package-lock.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nodelastprac/package.json" afterPath="$PROJECT_DIR$/nodelastprac/package.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reactlastprac/.idea/workspace.xml" afterPath="$PROJECT_DIR$/reactlastprac/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reactlastprac/src/crud.jsx" afterPath="$PROJECT_DIR$/reactlastprac/src/crud.jsx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reactprac/.idea/workspace.xml" afterPath="$PROJECT_DIR$/reactprac/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reactprac/src/Login.jsx" afterPath="$PROJECT_DIR$/reactprac/src/Login.jsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reactprac/public/index.html" afterPath="$PROJECT_DIR$/reactprac/public/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/reactprac/src/crud.jsx" afterPath="$PROJECT_DIR$/reactprac/src/crud.jsx" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -36,14 +27,19 @@
       <file leaf-file-name="AllData.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/nodelastprac/AllData.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
-              <caret line="143" column="12" lean-forward="false" selection-start-line="143" selection-start-column="12" selection-end-line="143" selection-end-column="12" />
+            <state relative-caret-position="-12">
+              <caret line="198" column="17" lean-forward="true" selection-start-line="198" selection-start-column="17" selection-end-line="198" selection-end-column="17" />
               <folding>
-                <element signature="e#898#997#0" expanded="false" />
-                <element signature="e#1031#1156#0" expanded="false" />
-                <element signature="e#1191#1921#0" expanded="false" />
-                <element signature="e#1959#1983#0" expanded="false" />
-                <element signature="e#3832#3973#0" expanded="false" />
+                <element signature="e#438#777#0" expanded="false" />
+                <element signature="e#802#934#0" expanded="false" />
+                <element signature="e#970#1069#0" expanded="false" />
+                <element signature="e#1103#1228#0" expanded="false" />
+                <element signature="e#1263#1993#0" expanded="false" />
+                <element signature="e#2031#2055#0" expanded="false" />
+                <element signature="e#3945#4288#0" expanded="false" />
+                <element signature="e#4324#4461#0" expanded="false" />
+                <element signature="e#4507#4996#0" expanded="false" />
+                <element signature="e#5790#5952#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -144,13 +140,14 @@
     <handled-path value="$PROJECT_DIR$/crud/node_modules" />
     <handled-path value="$PROJECT_DIR$/node/node_modules" />
     <handled-path value="$PROJECT_DIR$/node_modules" />
+    <handled-path value="$PROJECT_DIR$/nodelastprac/node_modules" />
     <handled-path value="$PROJECT_DIR$/reactcrud/node_modules" />
     <handled-path value="$PROJECT_DIR$/reactlastprac/node_modules" />
     <handled-path value="$PROJECT_DIR$/reactprac/node_modules" />
     <handled-path value="$PROJECT_DIR$/reactrouterror/node_modules" />
     <handled-path value="$PROJECT_DIR$/test/node_modules" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="y" value="4" />
     <option name="width" value="681" />
@@ -172,7 +169,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -190,6 +186,7 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -201,7 +198,7 @@
     <property name="JavaScriptPreferStrict" value="false" />
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
     <property name="nodejs.mocha.mocha_node_package_dir" value="$PROJECT_DIR$/node_modules/mocha" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/reactlastprac" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/reactprac" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -326,11 +323,13 @@
       <workItem from="1518669905026" duration="1513000" />
       <workItem from="1518671434280" duration="1815000" />
       <workItem from="1518673292871" duration="14279000" />
+      <workItem from="1518755439400" duration="1178000" />
+      <workItem from="1518757226228" duration="13821000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="380581000" />
+    <option name="totallyTimeSpent" value="395580000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -342,16 +341,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="7" />
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14512041" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12991127" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34589502" sideWeight="0.50253487" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34051144" sideWeight="0.49746513" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.41184387" sideWeight="0.49746513" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39973083" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -359,6 +357,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -393,8 +392,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/reactsite/src/App.js" />
-    <entry file="file://$PROJECT_DIR$/reactnode/src/App.css" />
     <entry file="file://$PROJECT_DIR$/reactprac/public/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -622,19 +619,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nodelastprac/node_modules/ms/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/nodelastprac/node_modules/ms/index.js" />
     <entry file="file://$PROJECT_DIR$/nodelastprac/package-lock.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -642,25 +631,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SecurityAll/PassportGoogle.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="662">
-          <caret line="246" column="20" lean-forward="true" selection-start-line="246" selection-start-column="20" selection-end-line="246" selection-end-column="20" />
-          <folding>
-            <element signature="e#4538#4696#0" expanded="false" />
-            <element signature="e#4735#4858#0" expanded="false" />
-            <element signature="e#4890#5257#0" expanded="false" />
-            <element signature="e#5561#5950#0" expanded="false" />
-            <element signature="e#6076#6801#0" expanded="false" />
-            <element signature="e#7074#7264#0" expanded="false" />
-            <element signature="e#7301#7643#0" expanded="false" />
-            <element signature="e#7680#7813#0" expanded="false" />
-            <element signature="e#7850#8001#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -668,7 +638,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="160">
           <caret line="8" column="44" lean-forward="false" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="44" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -676,7 +645,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-61">
           <caret line="40" column="57" lean-forward="false" selection-start-line="40" selection-start-column="51" selection-end-line="40" selection-end-column="57" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -688,16 +656,49 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/test/src/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="229" column="98" lean-forward="true" selection-start-line="229" selection-start-column="98" selection-end-line="229" selection-end-column="98" />
+          <folding>
+            <element signature="e#0#41#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/reactcrud/src/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="8480">
+          <caret line="457" column="30" lean-forward="true" selection-start-line="457" selection-start-column="30" selection-end-line="457" selection-end-column="30" />
+          <folding>
+            <element signature="e#0#41#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SecurityAll/PassportGoogle.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="59" column="20" lean-forward="true" selection-start-line="59" selection-start-column="20" selection-end-line="59" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/nodelastprac/AllData.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="143" column="12" lean-forward="false" selection-start-line="143" selection-start-column="12" selection-end-line="143" selection-end-column="12" />
+        <state relative-caret-position="-12">
+          <caret line="198" column="17" lean-forward="true" selection-start-line="198" selection-start-column="17" selection-end-line="198" selection-end-column="17" />
           <folding>
-            <element signature="e#898#997#0" expanded="false" />
-            <element signature="e#1031#1156#0" expanded="false" />
-            <element signature="e#1191#1921#0" expanded="false" />
-            <element signature="e#1959#1983#0" expanded="false" />
-            <element signature="e#3832#3973#0" expanded="false" />
+            <element signature="e#438#777#0" expanded="false" />
+            <element signature="e#802#934#0" expanded="false" />
+            <element signature="e#970#1069#0" expanded="false" />
+            <element signature="e#1103#1228#0" expanded="false" />
+            <element signature="e#1263#1993#0" expanded="false" />
+            <element signature="e#2031#2055#0" expanded="false" />
+            <element signature="e#3945#4288#0" expanded="false" />
+            <element signature="e#4324#4461#0" expanded="false" />
+            <element signature="e#4507#4996#0" expanded="false" />
+            <element signature="e#5790#5952#0" expanded="false" />
           </folding>
         </state>
       </provider>

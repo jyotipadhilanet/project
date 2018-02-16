@@ -191,8 +191,6 @@ class Crud extends Component {
     }
 
     edtInfo=(e)=>{
-        this.setState({IDInfo:e})
-        this.state.citydata=[]
         axios.post('http://localhost:5000/fetchid', {
             id: e
         }).then((sucess) => {
@@ -520,7 +518,7 @@ class Crud extends Component {
 
                         <div className="form-group col-md-3" >
                             {  pageArr.map((v,i)=>{
-                                return  <button type="button" className="btn btn-primary" onClick={this.fetlimit(v)} value={v}>{v}</button>
+                                return  <button type="button" className="btn btn-primary" onClick={()=>this.fetlimit(v)} value={v}>{v}</button>
                             })
                             }
                         </div>
@@ -556,7 +554,7 @@ class Crud extends Component {
                                             <td>{v.email}</td>
                                             <td>{v.state}</td>
                                             <td>{v.city}</td>
-                                            <td><button className="btn btn-info btnEdit" onClick={()=>{this.edtInfo(v._id)}}   data-toggle="modal" data-target="#myedit"><i className="fa fa-pencil"></i></button>
+                                            <td><button className="btn btn-info" onClick={()=>{this.edtInfo(v._id)}}   data-toggle="modal" data-target="#myedit"><i className="fa fa-pencil"></i></button>
                                                 <button className="btn btn-danger" onClick={()=> {this.setState({Deleteid: v._id})}} data-toggle="modal" data-target="#mydel"><i class="fa fa-trash"></i></button> </td>
                                         </tr>
                                     )

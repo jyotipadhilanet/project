@@ -1,24 +1,40 @@
 import React, { Component } from 'react';
 const axios=require('axios')
 class Crud extends Component{
-   constructor(){
+   constructor() {
        super()
-       this.state={
-          alldata:[],
-          disData:[],
-          stateData:[],
-          cityData:[],
-          searchData:[],
-           isSearch:false,
-          deleteId:'',
-          editId:'',
-          numrec:3
+       this.state = {
+           alldata: [],
+           disData: [],
+           stateData: [],
+           cityData: [],
+           searchData: [],
+           hobyArr: [],
+           isSearch: false,
+           isEditing: false,
+           deleteId: '',
+           editId: '',
+           numrec: 3,
+
+           sname: '',
+           age: '',
+           contact: '',
+           gender: '',
+           email: '',
+           hobbies: '',
+           state: '',
+           city: '',
+           password: '',
+           photo: '',
+           photo1: ''
+
        }
    }
    componentWillMount(){
-      this.initial();
        this.statefetch();
+      this.initial();
    }
+
    initial=()=>{
        console.log("Initial data")
        axios.get('http://localhost:5000/fetchdata').then((success)=>{
@@ -29,6 +45,15 @@ class Crud extends Component{
            console.log(err)
        })
    }
+
+
+    clearData=()=>{
+        this.setState({isEditing:false})
+        this.setState({sname:'',age:'', contact: '', gender: '', email: '',hobbies: '', state: '', city: '', password: '', photo: '', photo1: ''})
+        document.getElementById('password').value=''
+    }
+
+
 
    fetlimit=(e)=>{
        var last=e*this.state.numrec;
@@ -42,16 +67,21 @@ class Crud extends Component{
             this.fetlimit(1);
         })
     }
+    hobyArr=(e)=>{
+           this.state.hobyArr.push(e.target.value)
+           this.setState({hobbies:this.state.hobyArr.join(",")})
+           console.log(this.state.hobyArr)
+           console.log(this.state.hobbies)
+    }
 
     deldata=()=>{
        console.log(this.state.deleteId)
        axios.post('http://localhost:5000/del',{
            id:this.state.deleteId
        }).then((sucess)=>{
-           console.log(sucess)
-           var info=this.state.alldata.splice(sucess.data,1)
-           this.setState({alldata:this.state.alldata})
-           console.log(this.state.alldata)
+           var mydata=this.state.alldata.filter((d)=>d._id!==sucess.data._id);
+           this.setState({alldata:mydata})
+           console.log('after filter',mydata)
            this.fetlimit(1)
        }).catch((err)=>{
            console.log(err)
@@ -59,7 +89,10 @@ class Crud extends Component{
     }
 
     statefetch=()=>{
+       console.log("in state")
         axios.get('http://localhost:5000/statefetch').then((sucess)=>{
+            console.log("after state")
+            console.log(sucess.data)
             this.setState({stateData:sucess.data})
         }).catch((err)=>{
             console.log(err);
@@ -67,10 +100,11 @@ class Crud extends Component{
     }
 
     cityfetch=()=>{
-        axios.get('http://localhost:5000/cityfetch/'+document.getElementById('state').value).then((sucess)=>{
-            this.state.citydata=[]
-            this.setState({citydata:sucess.data})
-            console.log(this.state.citydata)
+       this.state.city=''
+       this.state.cityData=[]
+        axios.post('http://localhost:5000/cityfetch/'+document.getElementById('state').value).then((sucess)=>{
+            this.setState({cityData:sucess.data})
+            console.log(this.state.cityData)
         }).catch((err)=>{
             console.log(err);
         })
@@ -83,6 +117,7 @@ class Crud extends Component{
         this.setState({disData:mydata})
         console.log(this.state.disData)
     }
+
     dsort=(e)=>{
         var key=e.target.id
         console.log(e.target.id)
@@ -98,7 +133,8 @@ class Crud extends Component{
         if(e.target.value.length>0){
             this.setState({isSearch:true})
            this.state.alldata.map((val,i)=>{
-                if(val.sname.includes(data) ||  val.age.includes(data) || val.contact.includes(data) || val.gender.includes(data) || val.email.includes(data) || val.state.includes(data) || val.city.includes(data) || val.hobbies.includes(data))
+                if(val.sname.includes(data) ||  val.age.includes(data) || val.contact.includes(data) || val.gender.includes(data) ||
+                    val.email.includes(data) || val.state.includes(data) || val.city.includes(data) || val.hobbies.includes(data))
                 arr.push(val)
            })
             this.setState({searchData:arr})
@@ -108,9 +144,100 @@ class Crud extends Component{
         }
     }
 
+    insertData=()=>{
+       const d=new FormData();
+        console.log("in insert photo -",this.state.photo);
 
+      //  d.append('file',this.state.photo);
+       // console.log(d);
+        axios.post(
+            'http://localhost:5000/insert',
+            {
+                sname:this.state.sname,
+                age:this.state.age,
+                contact:this.state.contact,
+                password:this.state.password,
+                gender:this.state.gender,
+                email:this.state.email,
+                hobbies:this.state.hobyArr,
+                state:this.state.state,
+                city:this.state.city,
+                photo:this.state.photo1,
+                flag:1
+        })
+            .then((res)=>{
+                this.state.alldata.unshift(res.data)
+                this.setState({alldata:this.state.alldata})
+                console.log(this.state.data1)
 
+                this.fetlimit(1);
+            })
+            .catch((e)=>{
+                console.log("Error is="+e);
+            });
+    }
 
+    upadteData=()=>{
+        axios.post('http://localhost:5000/upd',{
+            id:this.state.editId,
+            age:this.state.age,
+            password:this.state.password,
+            gender:this.state.gender,
+            sname:this.state.sname,
+            state:this.state.state,
+            city:this.state.city,
+            email:this.state.email,
+            photo:this.state.photo1,
+            contact:this.state.contact,
+            hobbies:this.state.hobbies
+        }).then((sucess)=>{
+
+            console.log('after back from update=',sucess.data)
+            this.clearData()
+            var index= this.state.alldata.findIndex(x=>x._id===this.state.editId)
+            console.log(index)
+
+            var mydata=this.state.alldata.filter((d)=>d._id!==this.state.editId);
+            console.log('after filter',mydata)
+
+            mydata.splice(index,0,sucess.data);
+            console.log('correct data',mydata)
+            this.setState({alldata:mydata},()=>{
+                this.fetlimit(1)})
+        }).catch((err)=>{
+            console.log("error is=",err);
+        });
+    }
+
+    edtInfo=(e)=>{
+       this.setState({isEditing:true})
+        this.setState({editId:e})
+        axios.post(
+            'http://localhost:5000/fetchid',
+            {
+                id:e
+            }).then((res)=>{
+           this.setState({sname:res.data[0].sname,age:res.data[0].age,gender:res.data[0].gender,email:res.data[0].email,hobbies:res.data[0].hobbies,city:res.data[0].city,state:res.data[0].state,photo:res.data[0].photo,contact:res.data[0].contact})
+          console.log(this.state)
+       })
+            .catch((e)=>{
+                console.log("Error is="+e);
+            });
+}
+
+    setFile=(e)=>{
+            e.preventDefault();
+            let file = e.target.files[0];
+            let reader = new FileReader();
+            reader.onloadend = () => {
+                this.setState({
+                    photo:file,
+                    photo1: reader.result
+                });
+            };
+            reader.readAsDataURL(file);
+           console.log(`File Upload : ${this.state.photo}`);
+        }
 
     render(){
         var len=this.state.alldata.length;
@@ -120,7 +247,7 @@ class Crud extends Component{
             pageArr.push(i);
         }
         console.log(len,paginate,pageArr)
-
+        console.log(this.state.cityData)
         return(
             <div>
             <div className="modal fade" id="myModal">
@@ -133,33 +260,38 @@ class Crud extends Component{
                         </div>
 
                         <div className="modal-body">
-                            <form>
+                            <form onSubmit={(event)=>{event.preventDefault();}} encType="multipart/form-data">
                                 <div className="form-row">
                                     <div className="form-group col-md-6">
-                                        Student Name :-<input type="text" ref="name" id="name" placeholder="Name" className="form-control is-valid"      />
+                                            Student Name :-<input type="text" ref="name" id="name" placeholder="Name" className="form-control is-valid" value={this.state.sname} onChange={(e) => {
+                                            this.setState({sname: e.target.value})
+                                        }}    />
+
                                     </div>
                                     <div className="form-group col-md-6">
-                                        Password :- <input type="password" ref="password"  id="password" placeholder="age" className="form-control is-valid"    />
+                                        Password :- <input type="password" ref="password"  id="password" placeholder="password" className="form-control is-valid" onChange={(e)=>{this.setState({password:e.target.value})}}     />
                                     </div>
                                 </div>
                                 <div className="form-row">
                                     <div className="form-group col-md-12">
-                                        Age :- <input type="text" ref="age"  id="age" placeholder="age" className="form-control is-valid"    />
+                                        Age :- <input type="text" ref="age"  id="age" placeholder="age" className="form-control is-valid" value={this.state.age}  onChange={(e)=>{this.setState({age:e.target.value})}}    />
                                     </div>
                                 </div>
 
 
                                 <div class="form-check form-check-inline">
                                     <div className="form-group col-md-12">
-                                        Hobbies :-    <input type="checkbox" class="form-check-input" value="Dance"/>Dance
-                                                      <input type="checkbox" class="form-check-input" value="Sing"/>Sing
-                                                      <input type="checkbox" class="form-check-input" value="Study"/>Study
+                                        Hobbies :-    <input type="checkbox" name="hby"  onChange={this.hobyArr}  class="form-check-input" value="Dance" checked={(this.state.hobbies.includes("dance") || this.state.hobbies.includes("Dance") )?"checked":"" }  />dance
+                                                      <input type="checkbox" name="hby" onChange={this.hobyArr} class="form-check-input" value="Sing" checked={(this.state.hobbies.includes("Sing"))?"checked":"" }/>Sing
+                                                      <input type="checkbox" name="hby" onChange={this.hobyArr} class="form-check-input" value="Study" checked={(this.state.hobbies.includes("Study"))?"checked":"" }/>Study
                                      </div>
                                 </div>
 
                                 <div className="form-row">
                                     <div className="form-group col-md-12">
-                                        Image :- <input type="file" ref="img"  id="img" placeholder="image" className="form-control is-valid"    />
+                                        Image :-
+                                        {(this.state.isEditing)?  <img src={this.state.photo} height="100px" width="200px" /> :""}
+                                        <input type="file" ref="img"  id="img" placeholder="image" className="form-control is-valid"  onChange={this.setFile}   />
                                     </div>
                                 </div>
 
@@ -167,46 +299,65 @@ class Crud extends Component{
                                     <div className="form-group col-md-12">
                                     gender :-
                                         <label class="radio-inline">
-                                            <input type="radio" ref="gender"  id="gender"  />Male
+                                            <input type="radio" ref="gender"  id="gender" name="gender" onChange={(e)=>this.setState({gender:e.target.value})} value="male" checked={(this.state.gender=="male")?"checked" :""}    />male
                                         </label>
                                         <label class="radio-inline">
-                                            <input type="radio" ref="gender"  id="gender"  />Female
+                                            <input type="radio" ref="gender"  id="gender" name="gender" onChange={(e)=>this.setState({gender:e.target.value})} value="Female" checked={(this.state.gender=="Female")?"checked" :""}     />Female
                                         </label>
 
                                     </div>
                                 </div>
                                 <div className="form-row">
-                                    <div className="form-group col-md-6" onClick={this.cityfetch} >
+                                    <div className="form-group col-md-6" >
                                         State
-                                        <select id="state" className="form-control is-valid" >
+                                        <select id="state" className="form-control is-valid" value={this.state.state} onClick={this.cityfetch}  onChange={(e)=>this.setState({state:e.target.options[e.target.selectedIndex].value})}  >
                                             <option>Select State</option>
+                                            {
+                                                this.state.stateData.map((v,i)=>{
+                                                  return (<option key={v._id} value={v.name}>{v.name}</option>)
+                                                })
+                                            }
                                         </select>
                                     </div>
                                     <div className="form-group col-md-6">
                                         City
-                                        <select id="city" className="form-control is-valid"    >
-                                            <option>Select city</option>
+                                        <select id="city" className="form-control is-valid" onChange={(e)=>this.setState({city:e.target.options[e.target.selectedIndex].value})} >
+                                            <option>{(this.state.city)?this.state.city:'select city'}</option>
+                                            {
+                                                this.state.cityData.map((v,i)=>{
+                                                    return ((v.name===this.state.city)?'':<option key={v._id} value={v.name} >{v.name}</option>)
+                                                })
+                                            }
                                         </select>
                                     </div>
                                 </div>
 
+
                                 <div className="form-row">
                                     <div className="form-group col-md-6">
-                                        Email <input type="email" ref="email" id="email" placeholder="Email" className="form-control is-valid"  />
+                                        Email <input type="email" ref="email" id="email" placeholder="Email" value={this.state.email} className="form-control is-valid"   onChange={(e)=>{this.setState({email:e.target.value})}}     />
                                     </div>
                                     <div className="form-group col-md-6">
-                                        Contact no. <input type="text" ref="cont" id="cont" placeholder="contact" className="form-control is-valid"    />
+                                        Contact no. <input type="text" ref="cont" id="cont" placeholder="contact" className="form-control is-valid"  value={this.state.contact}  onChange={(e)=>{this.setState({contact:e.target.value})}}      />
                                     </div>
                                 </div>
 
                             </form>
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-danger" data-dismiss="modal">Close</button>
+                            {(this.state.isEditing)? <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={this.upadteData}>Update</button>:
+                            <button type="button" className="btn btn-primary" data-dismiss="modal" onClick={this.insertData}>Submit</button> }
+                            <button type="button" className="btn btn-danger" data-dismiss="modal" onClick={this.clearData}>Close</button>
                         </div>
                     </div>
                 </div>
             </div>
+
+
+
+
+
+
 
 
                 <div className="modal fade" id="mydel">
@@ -232,9 +383,11 @@ class Crud extends Component{
 
 
 
+
+
                     <div className="form-row">
                         <div className="form-group col-md-2" >
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onClick={this.clearData}>
                                 + Add Student
                             </button>
                         </div>
@@ -293,8 +446,9 @@ class Crud extends Component{
                                         <td>{val.state}</td>
                                         <td>{val.city}</td>
                                         <td>{val.hobbies}</td>
-                                        <td><img src="val.photo" height="70px" width="100px" /></td>
-                                        <td><button className="btn btn-info"><i className="fa fa-pencil"></i></button> <button id="mydel" className="btn btn-danger" onClick={()=>this.setState({deleteId:val._id})} data-toggle="modal" data-target="#mydel" ><i className="fa fa-trash"></i></button>  </td>
+                                        <td><img src={val.photo} height="70px" width="100px" /></td>
+                                        <td><button id="myModal" onClick={()=> this.edtInfo(val._id)
+                                        } data-toggle="modal" data-target="#myModal"      className="btn btn-info"><i className="fa fa-pencil"></i></button> <button id="mydel" className="btn btn-danger" onClick={()=>this.setState({deleteId:val._id})} data-toggle="modal" data-target="#mydel" ><i className="fa fa-trash"></i></button>  </td>
                                     </tr>
                                 )
                             })
@@ -309,8 +463,9 @@ class Crud extends Component{
                                    <td>{val.state}</td>
                                    <td>{val.city}</td>
                                    <td>{val.hobbies}</td>
-                                   <td><img src="val.photo" height="70px" width="100px" /></td>
-                                   <td><button className="btn btn-info"><i className="fa fa-pencil"></i></button> <button id="mydel" className="btn btn-danger" onClick={()=>{this.setState({deleteId:val._id})}} data-toggle="modal" data-target="#mydel" ><i className="fa fa-trash"></i></button>  </td>
+                                   <td><img src={val.photo} height="70px" width="100px" /></td>
+                                   <td><button id="myModal" onClick={()=>{this.edtInfo(val._id)}
+                                   } data-toggle="modal" data-target="#myModal"   className="btn btn-info"><i className="fa fa-pencil"></i></button> <button id="mydel" className="btn btn-danger" onClick={()=>{this.setState({deleteId:val._id})}} data-toggle="modal" data-target="#mydel" ><i className="fa fa-trash"></i></button>  </td>
                                </tr>
                            )
                        })

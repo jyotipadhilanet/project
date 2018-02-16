@@ -1,5 +1,6 @@
 var express=require('express');
 var app=express();
+//var fileUpload=require('express-fileupload')
 
 var bcrypt=require('bcryptjs')
 var mongoose=require('mongoose');
@@ -9,6 +10,7 @@ var url='mongodb://localhost:27017/mydb';
 var bodyparser=require('body-parser')
 var validator=require('validator')
 app.use(bodyparser.json())
+//app.use(fileUpload());
 app.use(bodyparser.urlencoded({extended:true}))
 
 app.use((req,res,next)=>{
@@ -129,15 +131,25 @@ app.post('/insert',(req,res)=>{
    //   }).catch((err)=>{
    //       console.log("error is=",err)
    //   })
-    var newstud=new stud(req.body);
-    newstud.password=bcrypt.hashSync(req.body.password,10);
-    newstud.save().then((info)=>{
-        console.log("inserted successfully=",info)
-        res.send(info)
-    }).catch((err)=>{
-        console.log("error is=",err)
-    })
+    //console.log(req.body);
+    // if (!req.files)
+    //     return res.status(400).send('No files were uploaded.');
+    // let sampleFile = req.files.photo;
+    // sampleFile.mv(__dirname+'/Image/jyoti.jpg'), function(err) {
+    //     if (err)
+    //         return res.status(500).send(err);
+    //     console.log('File uploaded!');
+    // }
 
+    console.log("at insert time......")
+        var newstud=new stud(req.body);
+        newstud.password=bcrypt.hashSync(req.body.password,10);
+        newstud.save().then((info)=>{
+            console.log("inserted successfully=",info)
+            res.send(info)
+        }).catch((err)=>{
+            console.log("error is=",err)
+        })
 
 })
 
@@ -157,8 +169,8 @@ app.post('/del',(req,res)=>{
 })
 
 app.get('/statefetch',(req,res)=>{
-   state.find().then((info)=>{
-            console.log(info)
+   state.find({}).then((info)=>{
+         res.send(info)
         }).catch((err)=>{
             console.log("not find",err)
         })
@@ -166,21 +178,26 @@ app.get('/statefetch',(req,res)=>{
 
 app.post('/cityfetch/:statenm',(req,res)=> {
     console.log(req.params.statenm)
-    state.find({name: req.params.statenm}).then((info) => {
-        console.log(info)
-        city.find({stateid: info[0]._id}).then((data) => {
-            console.log("city is=", data)
+    if(req.params.statenm!='Select State') {
+        state.find({name: req.params.statenm}).then((info) => {
+            console.log(info)
+            city.find({stateid: info[0]._id}).then((data) => {
+                console.log("city is=", data)
+                res.send(data)
+            }).catch((err) => {
+                console.log("not find city", err)
+            })
         }).catch((err) => {
-            console.log("not find city", err)
+            console.log(err)
         })
-    }).catch((err) => {
-        console.log(err)
-    })
+    }
 })
 
 
 app.post('/upd',(req,res)=>{
+    console.log("at update time......")
     var id=req.body.id
+    console.log(id)
     stud.findById(id).then((p)=>{
         p.sname=req.body.sname;
         p.age=req.body.age
@@ -205,6 +222,16 @@ app.post('/upd',(req,res)=>{
 
 app.get('/fetchdata',(req,res)=>{
     stud.find({}).sort({_id:-1}).then((result)=>{
+        //console.log(result)
+        res.send(result)
+    }).catch((err)=>{
+        console.log(err)
+    })
+})
+
+
+app.post('/fetchid',(req,res)=>{
+    stud.find({_id:req.body.id}).then((result)=>{
         console.log(result)
         res.send(result)
     }).catch((err)=>{
