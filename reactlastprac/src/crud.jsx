@@ -147,9 +147,6 @@ class Crud extends Component{
     insertData=()=>{
        const d=new FormData();
         console.log("in insert photo -",this.state.photo);
-
-      //  d.append('file',this.state.photo);
-       // console.log(d);
         axios.post(
             'http://localhost:5000/insert',
             {

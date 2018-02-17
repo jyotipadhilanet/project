@@ -1,16 +1,17 @@
 var express=require('express');
 var app=express();
 //var fileUpload=require('express-fileupload')
-
+var validator=require('express-validator')
 var bcrypt=require('bcryptjs')
 var mongoose=require('mongoose');
 mongoose.Promise=global.Promise;
 var url='mongodb://localhost:27017/mydb';
 
 var bodyparser=require('body-parser')
-var validator=require('validator')
+//var validator=require('validator')
 app.use(bodyparser.json())
 //app.use(fileUpload());
+app.use(validator())
 app.use(bodyparser.urlencoded({extended:true}))
 
 app.use((req,res,next)=>{
@@ -140,6 +141,16 @@ app.post('/insert',(req,res)=>{
     //         return res.status(500).send(err);
     //     console.log('File uploaded!');
     // }
+
+    req.checkBody('email', 'Invalid email').notEmpty().isEmail().isUnique();
+    req.checkBody('password', 'Invalid possword').notEmpty().len(8, 30);
+    req.checkBody('first_name', 'Invalid first_name').notEmpty().isAlpha();
+    req.checkBody('last_name', 'Invalid last_name').notEmpty().isAlpha();
+    req.checkBody('dateofbirth', 'Invalid dateofbirth').notEmpty.isDate();
+
+
+    var error=new validationErrors()
+
 
     console.log("at insert time......")
         var newstud=new stud(req.body);
