@@ -1,0 +1,6 @@
+category_id:{
+ type:mongoose.schema.Types.ObjectId,
+ ref:['category'] 
+}
+
+It must used by schema

@@ -1,0 +1,58 @@
+Visitor
+=============
+visitorid(Pk)(Number)    
+visitorname(VarChar2)
+email(VarChar2)
+
+Movie
+============
+movieid(Pk)(Number)    
+movieTitle(VarChar2)
+Description(VarChar2)
+MovieDuration(Time)
+
+Theatre                          
+==========                      
+theatreid(Pk)(Number)                    
+theatrename(String) 
+NoOfScreen(Number)                    
+location(VarChar2)
+                   
+screen
+========
+screenid(Pk)(Number)         
+theatreid(Fk)
+movieId(FK)
+CapacitySeat(Number)    
+AvailableSeat(Number)
+MovieDate  (Date)
+MovieTime  (Time)
+
+screenMovie
+================
+screenMovieid(Pk)(Number)  
+screenid(Fk)(Number)
+movieid(Fk)(Number) 
+
+seat
+=========
+seatCategoryId
+seatCategory
+Price
+screenid(Fk)(Number)    
+
+
+Booking
+==========                   
+Bookingid(Pk)(Number)    
+//theatreid(Fk)  
+//screenid(Fk)  
+screenMovieid(FK)
+visitorid(FK)                              
+//MovieDate  (Date)
+//MovieTime  (Time)
+seatCategoryId(FK)
+NoOfUser  (TinyInt)
+Total 
+
+
