@@ -1,20 +1,18 @@
 var mongoClient=require('mongodb').MongoClient;
-var url="mongodb://localhost:27017/mydb";
+var url="mongodb://localhost:27017";
 
-mongoClient.connect(url,(err,db)=>{
+mongoClient.connect(url,  {native_parser:true},(err,db)=>{
     if(err) throw error;
-
-    db.system.js.save( { _id : "Sum" ,
-        value : function(values)
-        {
-            var total = 0;
-            for(var i = 0; i < values.length; i++)
-                total += values[i];
-            return total;
-        }});
-    db.loadServerScript();
-    db.Sum(50);
-
+    var dbo = db.db('mydb');
+    dbo.eval('Sum(10)')
+        .then(function (response) {
+            debugger;
+        })
+        .catch(function (err) {
+            debugger
+        });
+    // dbo.loadServerScripts();
+    // dbo.Sum(10);
 });
 
 
